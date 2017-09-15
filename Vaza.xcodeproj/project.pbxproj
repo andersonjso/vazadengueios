@@ -21,7 +21,6 @@
 		028F95141F15A3FC0057B753 /* LocationInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95131F15A3FC0057B753 /* LocationInstagram.swift */; };
 		028F95161F15A8AE0057B753 /* instagram.json in Resources */ = {isa = PBXBuildFile; fileRef = 028F95151F15A8AE0057B753 /* instagram.json */; };
 		028F95181F15ACD60057B753 /* DetailInstagramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95171F15ACD60057B753 /* DetailInstagramVC.swift */; };
-		028F951C1F15BC6B0057B753 /* instagram-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 028F951B1F15BC6B0057B753 /* instagram-icon.png */; };
 		02CD66AE1F0C8F9D009065C2 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */; };
 		02CD66B01F0DDD94009065C2 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66AF1F0DDD94009065C2 /* Content.swift */; };
 		02CD66B31F0DDE5C009065C2 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */; };
@@ -35,11 +34,6 @@
 		02CD66C51F1480AA009065C2 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66C41F1480AA009065C2 /* FileHandler.swift */; };
 		02CD66CE1F148475009065C2 /* tweet.json in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66CD1F148475009065C2 /* tweet.json */; };
 		02CD66D01F148B44009065C2 /* notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66CF1F148B44009065C2 /* notifications.json */; };
-		02CD66D41F14906A009065C2 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D31F14906A009065C2 /* location.png */; };
-		02CD66D91F1493B8009065C2 /* markerblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D51F1493B8009065C2 /* markerblue.png */; };
-		02CD66DA1F1493B8009065C2 /* markergreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D61F1493B8009065C2 /* markergreen.png */; };
-		02CD66DB1F1493B8009065C2 /* markerred.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D71F1493B8009065C2 /* markerred.png */; };
-		02CD66DC1F1493B8009065C2 /* markeryellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D81F1493B8009065C2 /* markeryellow.png */; };
 		02CD66E01F1495F1009065C2 /* teste.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66DF1F1495F1009065C2 /* teste.png */; };
 		02CD66E21F149693009065C2 /* opa.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E11F149693009065C2 /* opa.png */; };
 		02CD66E81F14FE3C009065C2 /* blue-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E31F14FE3C009065C2 /* blue-dot.png */; };
@@ -69,7 +63,6 @@
 		028F95131F15A3FC0057B753 /* LocationInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInstagram.swift; sourceTree = "<group>"; };
 		028F95151F15A8AE0057B753 /* instagram.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = instagram.json; path = ../../Downloads/instagram.json; sourceTree = "<group>"; };
 		028F95171F15ACD60057B753 /* DetailInstagramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInstagramVC.swift; sourceTree = "<group>"; };
-		028F951B1F15BC6B0057B753 /* instagram-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "instagram-icon.png"; path = "../../Downloads/instagram-icon.png"; sourceTree = "<group>"; };
 		02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		02CD66AF1F0DDD94009065C2 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
@@ -83,11 +76,6 @@
 		02CD66C41F1480AA009065C2 /* FileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
 		02CD66CD1F148475009065C2 /* tweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tweet.json; path = Resources/tweet.json; sourceTree = "<group>"; };
 		02CD66CF1F148B44009065C2 /* notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = notifications.json; path = ../../Downloads/notifications.json; sourceTree = "<group>"; };
-		02CD66D31F14906A009065C2 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = ../../Downloads/location.png; sourceTree = "<group>"; };
-		02CD66D51F1493B8009065C2 /* markerblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markerblue.png; path = ../../Downloads/markerblue.png; sourceTree = "<group>"; };
-		02CD66D61F1493B8009065C2 /* markergreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markergreen.png; path = ../../Downloads/markergreen.png; sourceTree = "<group>"; };
-		02CD66D71F1493B8009065C2 /* markerred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markerred.png; path = ../../Downloads/markerred.png; sourceTree = "<group>"; };
-		02CD66D81F1493B8009065C2 /* markeryellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markeryellow.png; path = ../../Downloads/markeryellow.png; sourceTree = "<group>"; };
 		02CD66DF1F1495F1009065C2 /* teste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = teste.png; path = ../../Downloads/teste.png; sourceTree = "<group>"; };
 		02CD66E11F149693009065C2 /* opa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = opa.png; path = ../../Downloads/opa.png; sourceTree = "<group>"; };
 		02CD66E31F14FE3C009065C2 /* blue-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-dot.png"; path = "../../IdeaProjects/dengue-web-app/app/img/markers-google/blue-dot.png"; sourceTree = "<group>"; };
@@ -202,17 +190,11 @@
 			children = (
 				02CD66EF1F151CF6009065C2 /* twitter-logo2.png */,
 				02CD66ED1F15178A009065C2 /* twitter-icon.png */,
-				028F951B1F15BC6B0057B753 /* instagram-icon.png */,
 				02CD66CF1F148B44009065C2 /* notifications.json */,
 				02CD66CD1F148475009065C2 /* tweet.json */,
 				028F95151F15A8AE0057B753 /* instagram.json */,
-				02CD66D31F14906A009065C2 /* location.png */,
-				02CD66D51F1493B8009065C2 /* markerblue.png */,
-				02CD66D61F1493B8009065C2 /* markergreen.png */,
-				02CD66D71F1493B8009065C2 /* markerred.png */,
 				02CD66E11F149693009065C2 /* opa.png */,
 				02CD66DF1F1495F1009065C2 /* teste.png */,
-				02CD66D81F1493B8009065C2 /* markeryellow.png */,
 				02CD66E31F14FE3C009065C2 /* blue-dot.png */,
 				02CD66E41F14FE3C009065C2 /* green-dot.png */,
 				02CD66E51F14FE3C009065C2 /* purple-dot.png */,
@@ -302,23 +284,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02CD66DA1F1493B8009065C2 /* markergreen.png in Resources */,
 				02CD66E91F14FE3C009065C2 /* green-dot.png in Resources */,
 				02CD66CE1F148475009065C2 /* tweet.json in Resources */,
 				0261FECA1F0C7E6700F79B46 /* LaunchScreen.storyboard in Resources */,
 				02CD66D01F148B44009065C2 /* notifications.json in Resources */,
 				02CD66EC1F14FE3C009065C2 /* yellow-dot.png in Resources */,
-				02CD66D91F1493B8009065C2 /* markerblue.png in Resources */,
 				02CD66EE1F15178A009065C2 /* twitter-icon.png in Resources */,
 				02CD66EB1F14FE3C009065C2 /* red-dot.png in Resources */,
 				02CD66E01F1495F1009065C2 /* teste.png in Resources */,
 				0261FEC71F0C7E6700F79B46 /* Assets.xcassets in Resources */,
 				02CD66F01F151CF6009065C2 /* twitter-logo2.png in Resources */,
-				028F951C1F15BC6B0057B753 /* instagram-icon.png in Resources */,
-				02CD66DC1F1493B8009065C2 /* markeryellow.png in Resources */,
-				02CD66D41F14906A009065C2 /* location.png in Resources */,
 				028F95161F15A8AE0057B753 /* instagram.json in Resources */,
-				02CD66DB1F1493B8009065C2 /* markerred.png in Resources */,
 				0261FED21F0C7E8500F79B46 /* Podfile in Resources */,
 				02CD66E81F14FE3C009065C2 /* blue-dot.png in Resources */,
 				02CD66EA1F14FE3C009065C2 /* purple-dot.png in Resources */,
