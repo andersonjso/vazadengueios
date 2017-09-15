@@ -7,14 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024B7F641F3BF24E004B7888 /* DetailNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */; };
 		0261FEC01F0C7E6700F79B46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */; };
 		0261FEC21F0C7E6700F79B46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261FEC11F0C7E6700F79B46 /* ViewController.swift */; };
 		0261FEC51F0C7E6700F79B46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0261FEC31F0C7E6700F79B46 /* Main.storyboard */; };
 		0261FEC71F0C7E6700F79B46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0261FEC61F0C7E6700F79B46 /* Assets.xcassets */; };
 		0261FECA1F0C7E6700F79B46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0261FEC81F0C7E6700F79B46 /* LaunchScreen.storyboard */; };
+		0261FED21F0C7E8500F79B46 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0261FED11F0C7E8500F79B46 /* Podfile */; };
+		028F950A1F159B6A0057B753 /* ContentInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95091F159B6A0057B753 /* ContentInstagram.swift */; };
+		028F950C1F159DF10057B753 /* CaptionInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F950B1F159DF10057B753 /* CaptionInstagram.swift */; };
+		028F95101F159F2E0057B753 /* UserInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F950F1F159F2E0057B753 /* UserInstagram.swift */; };
+		028F95121F15A0010057B753 /* ImagesInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95111F15A0010057B753 /* ImagesInstagram.swift */; };
+		028F95141F15A3FC0057B753 /* LocationInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95131F15A3FC0057B753 /* LocationInstagram.swift */; };
+		028F95161F15A8AE0057B753 /* instagram.json in Resources */ = {isa = PBXBuildFile; fileRef = 028F95151F15A8AE0057B753 /* instagram.json */; };
+		028F95181F15ACD60057B753 /* DetailInstagramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95171F15ACD60057B753 /* DetailInstagramVC.swift */; };
+		028F951C1F15BC6B0057B753 /* instagram-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 028F951B1F15BC6B0057B753 /* instagram-icon.png */; };
+		02CD66AE1F0C8F9D009065C2 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */; };
+		02CD66B01F0DDD94009065C2 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66AF1F0DDD94009065C2 /* Content.swift */; };
+		02CD66B31F0DDE5C009065C2 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */; };
+		02CD66B51F0DDE8D009065C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66B41F0DDE8D009065C2 /* User.swift */; };
+		02CD66B71F0DDEF6009065C2 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66B61F0DDEF6009065C2 /* Classification.swift */; };
+		02CD66B91F1168DD009065C2 /* FileApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66B81F1168DD009065C2 /* FileApiManager.swift */; };
+		02CD66BB1F11721C009065C2 /* ContentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66BA1F11721C009065C2 /* ContentNotification.swift */; };
+		02CD66BF1F1174B0009065C2 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66BE1F1174B0009065C2 /* Type.swift */; };
+		02CD66C11F11783B009065C2 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66C01F11783B009065C2 /* Picture.swift */; };
+		02CD66C31F11DB80009065C2 /* DetailTweetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66C21F11DB80009065C2 /* DetailTweetVC.swift */; };
+		02CD66C51F1480AA009065C2 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66C41F1480AA009065C2 /* FileHandler.swift */; };
+		02CD66CE1F148475009065C2 /* tweet.json in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66CD1F148475009065C2 /* tweet.json */; };
+		02CD66D01F148B44009065C2 /* notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66CF1F148B44009065C2 /* notifications.json */; };
+		02CD66D41F14906A009065C2 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D31F14906A009065C2 /* location.png */; };
+		02CD66D91F1493B8009065C2 /* markerblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D51F1493B8009065C2 /* markerblue.png */; };
+		02CD66DA1F1493B8009065C2 /* markergreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D61F1493B8009065C2 /* markergreen.png */; };
+		02CD66DB1F1493B8009065C2 /* markerred.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D71F1493B8009065C2 /* markerred.png */; };
+		02CD66DC1F1493B8009065C2 /* markeryellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66D81F1493B8009065C2 /* markeryellow.png */; };
+		02CD66E01F1495F1009065C2 /* teste.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66DF1F1495F1009065C2 /* teste.png */; };
+		02CD66E21F149693009065C2 /* opa.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E11F149693009065C2 /* opa.png */; };
+		02CD66E81F14FE3C009065C2 /* blue-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E31F14FE3C009065C2 /* blue-dot.png */; };
+		02CD66E91F14FE3C009065C2 /* green-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E41F14FE3C009065C2 /* green-dot.png */; };
+		02CD66EA1F14FE3C009065C2 /* purple-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E51F14FE3C009065C2 /* purple-dot.png */; };
+		02CD66EB1F14FE3C009065C2 /* red-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E61F14FE3C009065C2 /* red-dot.png */; };
+		02CD66EC1F14FE3C009065C2 /* yellow-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66E71F14FE3C009065C2 /* yellow-dot.png */; };
+		02CD66EE1F15178A009065C2 /* twitter-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66ED1F15178A009065C2 /* twitter-icon.png */; };
+		02CD66F01F151CF6009065C2 /* twitter-logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CD66EF1F151CF6009065C2 /* twitter-logo2.png */; };
+		80BA42F209424D3D8D4E2299 /* libPods-Vaza.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2086A13E6D180C5C1E609CFD /* libPods-Vaza.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNotificationVC.swift; path = ../DetailNotificationVC.swift; sourceTree = "<group>"; };
 		0261FEBC1F0C7E6700F79B46 /* Vaza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0261FEC11F0C7E6700F79B46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +61,45 @@
 		0261FEC61F0C7E6700F79B46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0261FEC91F0C7E6700F79B46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0261FECB1F0C7E6700F79B46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0261FED11F0C7E8500F79B46 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		028F95091F159B6A0057B753 /* ContentInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentInstagram.swift; sourceTree = "<group>"; };
+		028F950B1F159DF10057B753 /* CaptionInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptionInstagram.swift; sourceTree = "<group>"; };
+		028F950F1F159F2E0057B753 /* UserInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInstagram.swift; sourceTree = "<group>"; };
+		028F95111F15A0010057B753 /* ImagesInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesInstagram.swift; sourceTree = "<group>"; };
+		028F95131F15A3FC0057B753 /* LocationInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInstagram.swift; sourceTree = "<group>"; };
+		028F95151F15A8AE0057B753 /* instagram.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = instagram.json; path = ../../Downloads/instagram.json; sourceTree = "<group>"; };
+		028F95171F15ACD60057B753 /* DetailInstagramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInstagramVC.swift; sourceTree = "<group>"; };
+		028F951B1F15BC6B0057B753 /* instagram-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "instagram-icon.png"; path = "../../Downloads/instagram-icon.png"; sourceTree = "<group>"; };
+		02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
+		02CD66AF1F0DDD94009065C2 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
+		02CD66B41F0DDE8D009065C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		02CD66B61F0DDEF6009065C2 /* Classification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
+		02CD66B81F1168DD009065C2 /* FileApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileApiManager.swift; sourceTree = "<group>"; };
+		02CD66BA1F11721C009065C2 /* ContentNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentNotification.swift; sourceTree = "<group>"; };
+		02CD66BE1F1174B0009065C2 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Type.swift; path = ../Type.swift; sourceTree = "<group>"; };
+		02CD66C01F11783B009065C2 /* Picture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		02CD66C21F11DB80009065C2 /* DetailTweetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTweetVC.swift; sourceTree = "<group>"; };
+		02CD66C41F1480AA009065C2 /* FileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
+		02CD66CD1F148475009065C2 /* tweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tweet.json; path = Resources/tweet.json; sourceTree = "<group>"; };
+		02CD66CF1F148B44009065C2 /* notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = notifications.json; path = ../../Downloads/notifications.json; sourceTree = "<group>"; };
+		02CD66D31F14906A009065C2 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = ../../Downloads/location.png; sourceTree = "<group>"; };
+		02CD66D51F1493B8009065C2 /* markerblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markerblue.png; path = ../../Downloads/markerblue.png; sourceTree = "<group>"; };
+		02CD66D61F1493B8009065C2 /* markergreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markergreen.png; path = ../../Downloads/markergreen.png; sourceTree = "<group>"; };
+		02CD66D71F1493B8009065C2 /* markerred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markerred.png; path = ../../Downloads/markerred.png; sourceTree = "<group>"; };
+		02CD66D81F1493B8009065C2 /* markeryellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markeryellow.png; path = ../../Downloads/markeryellow.png; sourceTree = "<group>"; };
+		02CD66DF1F1495F1009065C2 /* teste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = teste.png; path = ../../Downloads/teste.png; sourceTree = "<group>"; };
+		02CD66E11F149693009065C2 /* opa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = opa.png; path = ../../Downloads/opa.png; sourceTree = "<group>"; };
+		02CD66E31F14FE3C009065C2 /* blue-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-dot.png"; path = "../../IdeaProjects/dengue-web-app/app/img/markers-google/blue-dot.png"; sourceTree = "<group>"; };
+		02CD66E41F14FE3C009065C2 /* green-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "green-dot.png"; path = "../../IdeaProjects/dengue-web-app/app/img/markers-google/green-dot.png"; sourceTree = "<group>"; };
+		02CD66E51F14FE3C009065C2 /* purple-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "purple-dot.png"; path = "../../IdeaProjects/dengue-web-app/app/img/markers-google/purple-dot.png"; sourceTree = "<group>"; };
+		02CD66E61F14FE3C009065C2 /* red-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red-dot.png"; path = "../../IdeaProjects/dengue-web-app/app/img/markers-google/red-dot.png"; sourceTree = "<group>"; };
+		02CD66E71F14FE3C009065C2 /* yellow-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "yellow-dot.png"; path = "../../IdeaProjects/dengue-web-app/app/img/markers-google/yellow-dot.png"; sourceTree = "<group>"; };
+		02CD66ED1F15178A009065C2 /* twitter-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter-icon.png"; path = "../../Downloads/twitter-icon.png"; sourceTree = "<group>"; };
+		02CD66EF1F151CF6009065C2 /* twitter-logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter-logo2.png"; path = "../../Downloads/twitter-logo2.png"; sourceTree = "<group>"; };
+		2086A13E6D180C5C1E609CFD /* libPods-Vaza.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Vaza.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDEE1A473FD8BFEDEC83CB31 /* Pods-Vaza.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vaza.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vaza/Pods-Vaza.debug.xcconfig"; sourceTree = "<group>"; };
+		F4AC3CB035B152B5F20BEC2D /* Pods-Vaza.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vaza.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vaza/Pods-Vaza.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80BA42F209424D3D8D4E2299 /* libPods-Vaza.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +117,13 @@
 		0261FEB31F0C7E6700F79B46 = {
 			isa = PBXGroup;
 			children = (
+				02CD66CC1F148463009065C2 /* Resources */,
+				02CD66B81F1168DD009065C2 /* FileApiManager.swift */,
+				0261FED11F0C7E8500F79B46 /* Podfile */,
 				0261FEBE1F0C7E6700F79B46 /* Vaza */,
 				0261FEBD1F0C7E6700F79B46 /* Products */,
+				F2A3D7727E74BF8C8A252721 /* Pods */,
+				C6A8B6826845F74E62C2C479 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +138,105 @@
 		0261FEBE1F0C7E6700F79B46 /* Vaza */ = {
 			isa = PBXGroup;
 			children = (
+				028F950D1F159EFB0057B753 /* Model */,
+				028F95081F159B460057B753 /* ContentUtil */,
+				028F95071F159B0E0057B753 /* Contents */,
 				0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */,
 				0261FEC11F0C7E6700F79B46 /* ViewController.swift */,
+				02CD66C21F11DB80009065C2 /* DetailTweetVC.swift */,
+				028F95171F15ACD60057B753 /* DetailInstagramVC.swift */,
+				024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */,
 				0261FEC31F0C7E6700F79B46 /* Main.storyboard */,
 				0261FEC61F0C7E6700F79B46 /* Assets.xcassets */,
 				0261FEC81F0C7E6700F79B46 /* LaunchScreen.storyboard */,
 				0261FECB1F0C7E6700F79B46 /* Info.plist */,
+				02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */,
+				02CD66C41F1480AA009065C2 /* FileHandler.swift */,
 			);
 			path = Vaza;
+			sourceTree = "<group>";
+		};
+		028F95071F159B0E0057B753 /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				02CD66AF1F0DDD94009065C2 /* Content.swift */,
+				02CD66BA1F11721C009065C2 /* ContentNotification.swift */,
+			);
+			name = Contents;
+			sourceTree = "<group>";
+		};
+		028F95081F159B460057B753 /* ContentUtil */ = {
+			isa = PBXGroup;
+			children = (
+				02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */,
+				02CD66B41F0DDE8D009065C2 /* User.swift */,
+				02CD66BE1F1174B0009065C2 /* Type.swift */,
+				02CD66B61F0DDEF6009065C2 /* Classification.swift */,
+				02CD66C01F11783B009065C2 /* Picture.swift */,
+			);
+			name = ContentUtil;
+			sourceTree = "<group>";
+		};
+		028F950D1F159EFB0057B753 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				028F950E1F159F040057B753 /* ContentInstagram */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		028F950E1F159F040057B753 /* ContentInstagram */ = {
+			isa = PBXGroup;
+			children = (
+				028F95091F159B6A0057B753 /* ContentInstagram.swift */,
+				028F950B1F159DF10057B753 /* CaptionInstagram.swift */,
+				028F950F1F159F2E0057B753 /* UserInstagram.swift */,
+				028F95111F15A0010057B753 /* ImagesInstagram.swift */,
+				028F95131F15A3FC0057B753 /* LocationInstagram.swift */,
+			);
+			name = ContentInstagram;
+			sourceTree = "<group>";
+		};
+		02CD66CC1F148463009065C2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				02CD66EF1F151CF6009065C2 /* twitter-logo2.png */,
+				02CD66ED1F15178A009065C2 /* twitter-icon.png */,
+				028F951B1F15BC6B0057B753 /* instagram-icon.png */,
+				02CD66CF1F148B44009065C2 /* notifications.json */,
+				02CD66CD1F148475009065C2 /* tweet.json */,
+				028F95151F15A8AE0057B753 /* instagram.json */,
+				02CD66D31F14906A009065C2 /* location.png */,
+				02CD66D51F1493B8009065C2 /* markerblue.png */,
+				02CD66D61F1493B8009065C2 /* markergreen.png */,
+				02CD66D71F1493B8009065C2 /* markerred.png */,
+				02CD66E11F149693009065C2 /* opa.png */,
+				02CD66DF1F1495F1009065C2 /* teste.png */,
+				02CD66D81F1493B8009065C2 /* markeryellow.png */,
+				02CD66E31F14FE3C009065C2 /* blue-dot.png */,
+				02CD66E41F14FE3C009065C2 /* green-dot.png */,
+				02CD66E51F14FE3C009065C2 /* purple-dot.png */,
+				02CD66E61F14FE3C009065C2 /* red-dot.png */,
+				02CD66E71F14FE3C009065C2 /* yellow-dot.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C6A8B6826845F74E62C2C479 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2086A13E6D180C5C1E609CFD /* libPods-Vaza.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2A3D7727E74BF8C8A252721 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DDEE1A473FD8BFEDEC83CB31 /* Pods-Vaza.debug.xcconfig */,
+				F4AC3CB035B152B5F20BEC2D /* Pods-Vaza.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +246,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0261FECE1F0C7E6700F79B46 /* Build configuration list for PBXNativeTarget "Vaza" */;
 			buildPhases = (
+				C7BC8A519EEEA874EA20132C /* [CP] Check Pods Manifest.lock */,
 				0261FEB81F0C7E6700F79B46 /* Sources */,
 				0261FEB91F0C7E6700F79B46 /* Frameworks */,
 				0261FEBA1F0C7E6700F79B46 /* Resources */,
+				000414A784A2D943C4653D25 /* [CP] Embed Pods Frameworks */,
+				F0C9B559E306A681CA273DE5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,13 +302,80 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02CD66DA1F1493B8009065C2 /* markergreen.png in Resources */,
+				02CD66E91F14FE3C009065C2 /* green-dot.png in Resources */,
+				02CD66CE1F148475009065C2 /* tweet.json in Resources */,
 				0261FECA1F0C7E6700F79B46 /* LaunchScreen.storyboard in Resources */,
+				02CD66D01F148B44009065C2 /* notifications.json in Resources */,
+				02CD66EC1F14FE3C009065C2 /* yellow-dot.png in Resources */,
+				02CD66D91F1493B8009065C2 /* markerblue.png in Resources */,
+				02CD66EE1F15178A009065C2 /* twitter-icon.png in Resources */,
+				02CD66EB1F14FE3C009065C2 /* red-dot.png in Resources */,
+				02CD66E01F1495F1009065C2 /* teste.png in Resources */,
 				0261FEC71F0C7E6700F79B46 /* Assets.xcassets in Resources */,
+				02CD66F01F151CF6009065C2 /* twitter-logo2.png in Resources */,
+				028F951C1F15BC6B0057B753 /* instagram-icon.png in Resources */,
+				02CD66DC1F1493B8009065C2 /* markeryellow.png in Resources */,
+				02CD66D41F14906A009065C2 /* location.png in Resources */,
+				028F95161F15A8AE0057B753 /* instagram.json in Resources */,
+				02CD66DB1F1493B8009065C2 /* markerred.png in Resources */,
+				0261FED21F0C7E8500F79B46 /* Podfile in Resources */,
+				02CD66E81F14FE3C009065C2 /* blue-dot.png in Resources */,
+				02CD66EA1F14FE3C009065C2 /* purple-dot.png in Resources */,
+				02CD66E21F149693009065C2 /* opa.png in Resources */,
 				0261FEC51F0C7E6700F79B46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		000414A784A2D943C4653D25 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vaza/Pods-Vaza-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7BC8A519EEEA874EA20132C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F0C9B559E306A681CA273DE5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vaza/Pods-Vaza-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0261FEB81F0C7E6700F79B46 /* Sources */ = {
@@ -139,6 +384,24 @@
 			files = (
 				0261FEC21F0C7E6700F79B46 /* ViewController.swift in Sources */,
 				0261FEC01F0C7E6700F79B46 /* AppDelegate.swift in Sources */,
+				028F95181F15ACD60057B753 /* DetailInstagramVC.swift in Sources */,
+				02CD66B71F0DDEF6009065C2 /* Classification.swift in Sources */,
+				024B7F641F3BF24E004B7888 /* DetailNotificationVC.swift in Sources */,
+				028F95101F159F2E0057B753 /* UserInstagram.swift in Sources */,
+				02CD66C11F11783B009065C2 /* Picture.swift in Sources */,
+				02CD66B51F0DDE8D009065C2 /* User.swift in Sources */,
+				028F95121F15A0010057B753 /* ImagesInstagram.swift in Sources */,
+				02CD66B91F1168DD009065C2 /* FileApiManager.swift in Sources */,
+				02CD66BF1F1174B0009065C2 /* Type.swift in Sources */,
+				02CD66C31F11DB80009065C2 /* DetailTweetVC.swift in Sources */,
+				028F950C1F159DF10057B753 /* CaptionInstagram.swift in Sources */,
+				028F95141F15A3FC0057B753 /* LocationInstagram.swift in Sources */,
+				02CD66C51F1480AA009065C2 /* FileHandler.swift in Sources */,
+				02CD66B31F0DDE5C009065C2 /* GeoLocation.swift in Sources */,
+				02CD66AE1F0C8F9D009065C2 /* RestApiManager.swift in Sources */,
+				02CD66B01F0DDD94009065C2 /* Content.swift in Sources */,
+				028F950A1F159B6A0057B753 /* ContentInstagram.swift in Sources */,
+				02CD66BB1F11721C009065C2 /* ContentNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +524,7 @@
 		};
 		0261FECF1F0C7E6700F79B46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDEE1A473FD8BFEDEC83CB31 /* Pods-Vaza.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZRHSTMPTJB;
@@ -274,6 +538,7 @@
 		};
 		0261FED01F0C7E6700F79B46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4AC3CB035B152B5F20BEC2D /* Pods-Vaza.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZRHSTMPTJB;
@@ -304,6 +569,7 @@
 				0261FED01F0C7E6700F79B46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
