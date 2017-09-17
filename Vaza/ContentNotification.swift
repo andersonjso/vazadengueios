@@ -33,7 +33,19 @@ class ContentNotification : NSObject {
         self.descriptionContent = contentNotificationDictionary["description"] as? String
         self.date = contentNotificationDictionary["date"] as? String
         self.type = Type(typeDictionary: contentNotificationDictionary["type"] as! [String: Any])
-      //  self.pictures =
+        
+        
+        let allPictures = contentNotificationDictionary["pictures"] as? [[String: Any]]
+        self.pictures = [Picture]()
+        
+        for newPicture in allPictures!{
+            let newContent = Picture(pictureDictionary: newPicture)
+            
+           self.pictures?.append(newContent)
+        }
+        
+        
+        
         self.downVoteCount = contentNotificationDictionary["downVoteCount"] as? Int
         self.upVoteCount = contentNotificationDictionary["upVoteCount"] as? Int
         self.userVote = contentNotificationDictionary["userVote"] as? Int

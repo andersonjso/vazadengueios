@@ -10,10 +10,46 @@ import UIKit
 
 class DetailNotificationVC: UIViewController {
 
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var publicationDate: UILabel!
+    @IBOutlet weak var classification: UILabel!
+    @IBOutlet weak var notificationTitle: UILabel!
+    @IBOutlet weak var notificationImage: UIImageView!
+    @IBOutlet weak var notificationDescription: UITextView!
+    
+    var userNameString = String()
+    var publicationDateString = String()
+    var classificationString = String()
+    var notificationTitleString = String()
+    var notificationDescriptionString = String()
+    var imagePhotoUrl = String()
+    
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userName.text = userNameString
+        publicationDate.text = publicationDateString
+        classification.text = classificationString
+        notificationTitle.text = notificationTitleString
+        notificationDescription.text = notificationDescriptionString
+        
+        if !imagePhotoUrl.isEmpty{
+            let urlPhoto = URL(string: imagePhotoUrl)
+            do{
+                let photo = try Data(contentsOf: urlPhoto!)
+                notificationImage.image = UIImage(data: photo)
+            } catch {
+                notificationImage.image = UIImage(named: "vazaicon")
+                
+            }
+        }else {
+            notificationImage.image = UIImage(named: "vazaicon")
+        }
+        
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +57,7 @@ class DetailNotificationVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func closePopUp(_ sender: Any) {
+         dismiss(animated: true, completion: nil)
     }
-    */
-
 }

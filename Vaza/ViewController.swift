@@ -75,7 +75,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                 detailsTweet.imageUserUrl = (tappedContent.user?.profileImageUrl?.replacingOccurrences(of: "normal", with: "400x400"))!
             }
 
-        }else if segue.identifier == "instagramDetail"{
+        }else if segue.identifier == "instagramDetail" {
             let detailsInstagram = segue.destination as! DetailInstagramVC
             
             if let tappedContent = tappedMarker.userData as? ContentInstagram {
@@ -86,6 +86,33 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                 detailsInstagram.imageUserUrl = (tappedContent.userInstagram?.profilePictureUrl)!
                 detailsInstagram.imagePhotoUrl = (tappedContent.images?.standardResolution?.url)!
             }
+        } else if segue.identifier == "notificationDetail" {
+            let detailsNotification = segue.destination as! DetailNotificationVC
+            
+            if let tappedContent = tappedMarker.userData as? ContentNotification{
+                if tappedContent.user != nil{
+                    detailsNotification.userNameString = (tappedContent.user?.name)!
+                }else{
+                    detailsNotification.userNameString = "Anônimo"
+                }
+                
+                detailsNotification.publicationDateString = tappedContent.date!
+                detailsNotification.notificationTitleString = tappedContent.title!
+                detailsNotification.notificationDescriptionString = tappedContent.descriptionContent!
+                detailsNotification.classificationString = (tappedContent.type?.name!)!
+                
+                if tappedContent.pictures != nil && (tappedContent.pictures?.count)! > 0{
+                    let imageId = String(describing: tappedContent.pictures![0].id!)
+                    
+                    detailsNotification.imagePhotoUrl = "http://vazadengue.inf.puc-rio.br/api/picture/" +
+                            imageId + "/download"
+                }
+                
+                
+                //(tappedContent.user)
+                
+            }
+            
         }
         
         

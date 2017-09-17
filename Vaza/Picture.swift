@@ -22,7 +22,11 @@ class Picture : NSObject{
         self.id = pictureDictionary["id"] as? Int
         self.fileName = pictureDictionary["fileName"] as? String
         self.date = pictureDictionary["date"] as? String
-        self.user = User(userDictionary: pictureDictionary["user"] as! [String: Any])
+        
+       // if pictureDictionary["user"] != nil{
+     //             self.user = User(userDictionary: pictureDictionary["user"] as! [String: Any])
+      //  }
+        
         self.mimeType = pictureDictionary["mimeType"] as? String
         self.width = pictureDictionary["width"] as? Int
         self.height = pictureDictionary["height"] as? Int

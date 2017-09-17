@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02299A1E1F6E2122009F17CE /* vazaicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02299A1D1F6E2122009F17CE /* vazaicon.png */; };
 		024B7F641F3BF24E004B7888 /* DetailNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */; };
 		0261FEC01F0C7E6700F79B46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */; };
 		0261FEC21F0C7E6700F79B46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261FEC11F0C7E6700F79B46 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02299A1D1F6E2122009F17CE /* vazaicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vazaicon.png; path = ../../Downloads/vazaicon.png; sourceTree = "<group>"; };
 		024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNotificationVC.swift; path = ../DetailNotificationVC.swift; sourceTree = "<group>"; };
 		0261FEBC1F0C7E6700F79B46 /* Vaza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02299A1B1F6B8F04009F17CE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0261FEC11F0C7E6700F79B46 /* ViewController.swift */,
+				02CD66C21F11DB80009065C2 /* DetailTweetVC.swift */,
+				028F95171F15ACD60057B753 /* DetailInstagramVC.swift */,
+				024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		02299A1C1F6B8F27009F17CE /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */,
+				02CD66C41F1480AA009065C2 /* FileHandler.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		0261FEB31F0C7E6700F79B46 = {
 			isa = PBXGroup;
 			children = (
@@ -126,20 +148,16 @@
 		0261FEBE1F0C7E6700F79B46 /* Vaza */ = {
 			isa = PBXGroup;
 			children = (
+				02299A1C1F6B8F27009F17CE /* Util */,
+				02299A1B1F6B8F04009F17CE /* ViewControllers */,
 				028F950D1F159EFB0057B753 /* Model */,
 				028F95081F159B460057B753 /* ContentUtil */,
 				028F95071F159B0E0057B753 /* Contents */,
 				0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */,
-				0261FEC11F0C7E6700F79B46 /* ViewController.swift */,
-				02CD66C21F11DB80009065C2 /* DetailTweetVC.swift */,
-				028F95171F15ACD60057B753 /* DetailInstagramVC.swift */,
-				024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */,
 				0261FEC31F0C7E6700F79B46 /* Main.storyboard */,
 				0261FEC61F0C7E6700F79B46 /* Assets.xcassets */,
 				0261FEC81F0C7E6700F79B46 /* LaunchScreen.storyboard */,
 				0261FECB1F0C7E6700F79B46 /* Info.plist */,
-				02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */,
-				02CD66C41F1480AA009065C2 /* FileHandler.swift */,
 			);
 			path = Vaza;
 			sourceTree = "<group>";
@@ -188,6 +206,7 @@
 		02CD66CC1F148463009065C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				02299A1D1F6E2122009F17CE /* vazaicon.png */,
 				02CD66EF1F151CF6009065C2 /* twitter-logo2.png */,
 				02CD66ED1F15178A009065C2 /* twitter-icon.png */,
 				02CD66CF1F148B44009065C2 /* notifications.json */,
@@ -292,6 +311,7 @@
 				02CD66EE1F15178A009065C2 /* twitter-icon.png in Resources */,
 				02CD66EB1F14FE3C009065C2 /* red-dot.png in Resources */,
 				02CD66E01F1495F1009065C2 /* teste.png in Resources */,
+				02299A1E1F6E2122009F17CE /* vazaicon.png in Resources */,
 				0261FEC71F0C7E6700F79B46 /* Assets.xcassets in Resources */,
 				02CD66F01F151CF6009065C2 /* twitter-logo2.png in Resources */,
 				028F95161F15A8AE0057B753 /* instagram.json in Resources */,
