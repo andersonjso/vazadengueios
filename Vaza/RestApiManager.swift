@@ -13,6 +13,7 @@ class RestApiManager {
     
     let url = URL(string: "http://vazadengue.inf.puc-rio.br/api/tweet?sort=createdAt,desc&size=100")
     let urlNoti = URL(string: "http://vazadengue.inf.puc-rio.br/api/poi/?sort=date&size=500")
+    let urlNotificationTypes = URL(string: "http://vazadengue.inf.puc-rio.br/api/poi-type")
     
     let session = URLSession.shared
     var fileHandler = FileHandler ()
@@ -125,6 +126,34 @@ class RestApiManager {
         }
         
         return contents
+    }
+    
+    func retrieveNotificationOptions(completionHandler:@escaping ([Notification]) -> ()){
+        var notifications = [Notification]()
+        
+        
+        session.dataTask(with: urlNotificationTypes!) { (data, response, error) in
+            if let data = data{
+                do{
+                    let json = try! JSONSerialization.jsonObject(with: data, options: [])
+                    
+                    
+                    
+                    
+                        let notificationsDictionaries = json as? [[String: Any]]
+                        
+                        for notificationDic in notificationsDictionaries!{
+                            let newNotification = Notification(notificationDictionary: notificationDic)
+                            
+                            notifications.append(newNotification)
+                            
+                        }
+                    }
+                
+            }
+
+            completionHandler(notifications)
+            }.resume()
     }
 
 }

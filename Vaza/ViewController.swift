@@ -56,7 +56,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         } else if marker.userData is ContentNotification{
             performSegue(withIdentifier: "notificationDetail", sender: self)
         }
-        
+    
         
         
     }
@@ -277,6 +277,49 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         }
 
      }
+    
+    @IBAction func sendNotification(_ sender: Any) {
+        
+        
+        performSegue(withIdentifier: "sendNotification", sender: self)
+        
+
+        
+        
+        
+                var myNotitifications = [Notification]()
+                restApiManager.retrieveNotificationOptions{ (notifications) in
+                    myNotitifications = notifications
+                    
+                    DispatchQueue.main.async {
+
+                        for notification in myNotitifications{
+                            print (notification.name)
+//                            var newMarker = GMSMarker()
+//                            newMarker = content.convertToMarker()
+//                            print("Key: " + (content.classification?.key)!)
+//                            if let key = content.classification?.key{
+//                                print ("entrei no " + key)
+//                                if key != "NOISE"{
+//                                    newMarker.map = self.mapView
+//                                    print("printa")
+//                                }
+//                                else{
+//                                    newMarker.map = nil
+//                                    print("nao foi")
+//                                }
+//        
+//                            }
+                            
+                            
+                        }
+                        print ("Done")
+                    }
+                }
+
+        
+    }
+    
 
 }
 
