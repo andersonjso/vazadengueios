@@ -137,9 +137,6 @@ class RestApiManager {
                 do{
                     let json = try! JSONSerialization.jsonObject(with: data, options: [])
                     
-                    
-                    
-                    
                         let notificationsDictionaries = json as? [[String: Any]]
                         
                         for notificationDic in notificationsDictionaries!{

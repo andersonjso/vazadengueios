@@ -12,7 +12,7 @@ class Notification: NSObject{
     
     var id: Int?
     var name: String?
-    var fields: [Field]?
+    var fields = [Field]()
     
     init(notificationDictionary: [String: Any]){
         self.id = notificationDictionary["id"] as? Int
@@ -23,7 +23,7 @@ class Notification: NSObject{
         for field in allFields!{
             let newField = Field(fieldDictionary: field)
             
-            self.fields?.append(newField)
+            self.fields.append(newField)
         }
     }
 

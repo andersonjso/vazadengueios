@@ -22,6 +22,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var notificationButton: UIBarButtonItem!
     @IBOutlet weak var instagramButton: UIBarButtonItem!
     
+    var myNotitifications = [Notification]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,7 +115,52 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                 
             }
             
+        } else if segue.identifier == "sendNotification"{
+            let newNotification = segue.destination as! NewNotificationVC
+            
+            
+            restApiManager.retrieveNotificationOptions{ (notifications) in
+                self.myNotitifications = notifications
+                
+                DispatchQueue.main.async {
+                    
+                    for notification in self.myNotitifications{
+                 //       print (notification.name)
+                        //                            var newMarker = GMSMarker()
+                        //                            newMarker = content.convertToMarker()
+                        //                            print("Key: " + (content.classification?.key)!)
+                        //                            if let key = content.classification?.key{
+                        //                                print ("entrei no " + key)
+                        //                                if key != "NOISE"{
+                        //                                    newMarker.map = self.mapView
+                        //                                    print("printa")
+                        //                                }
+                        //                                else{
+                        //                                    newMarker.map = nil
+                        //                                    print("nao foi")
+                        //                                }
+                        //
+                        //                            }
+                        newNotification.notificationTypesData.append(notification)
+                        
+                        
+                        
+                    }
+                    
+                    newNotification.notificationTypes.reloadAllComponents()
+                    //  print (newNotification.notificationTypesData.count)
+                    print ("Done")
+              
+                    
+                }
+            }
+            
+
+           
+            
+            
         }
+
         
         
         
@@ -287,35 +334,6 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         
         
-                var myNotitifications = [Notification]()
-                restApiManager.retrieveNotificationOptions{ (notifications) in
-                    myNotitifications = notifications
-                    
-                    DispatchQueue.main.async {
-
-                        for notification in myNotitifications{
-                            print (notification.name)
-//                            var newMarker = GMSMarker()
-//                            newMarker = content.convertToMarker()
-//                            print("Key: " + (content.classification?.key)!)
-//                            if let key = content.classification?.key{
-//                                print ("entrei no " + key)
-//                                if key != "NOISE"{
-//                                    newMarker.map = self.mapView
-//                                    print("printa")
-//                                }
-//                                else{
-//                                    newMarker.map = nil
-//                                    print("nao foi")
-//                                }
-//        
-//                            }
-                            
-                            
-                        }
-                        print ("Done")
-                    }
-                }
 
         
     }
