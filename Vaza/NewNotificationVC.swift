@@ -12,6 +12,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     struct QuestionData{
         var questionName:String
+        var questionOptions = [String]()
     }
     
     @IBOutlet weak var notificationTypes: UIPickerView!
@@ -32,13 +33,6 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         notificationTypes.dataSource = self
         tableQuestions.delegate = self
         tableQuestions.dataSource = self
-        
-        tableData = [
-            QuestionData(questionName: "test1"),
-            QuestionData(questionName: "test2")
-        ]
-        
-        // Do any additional setup after loading the view.
     }
     
     
@@ -52,14 +46,29 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (notificationTypesData.count > 0){
+            tableData.removeAll()
             selectedNotification = notificationTypesData[row]
-            self.tableQuestions.reloadData()
 
         //    print (notificationTypesData[row].id)
             
-//            for field in notificationTypesData[row].fields as! [Field]{
-//
-//            }
+            for field in notificationTypesData[row].fields {
+                var options = [String]()
+                if (field.type?.name == "Number"){
+                    for age in 6...110{
+                        options.append(String(age))
+                    }
+                }else{
+                    for option in field.options{
+                        options.append(option.label!)
+                    }
+                }
+                
+                let question = QuestionData(questionName: field.name!, questionOptions: options)
+                
+                tableData.append(question)
+            }
+            
+            self.tableQuestions.reloadData()
             
         }
     }
@@ -92,9 +101,14 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "questionsCells", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "questionsCells", for: indexPath) as! QuestionsTVCell
+        cell.questionOptions.reloadAllComponents()
+
+        cell.questionName.text = tableData[indexPath.row].questionName
+        cell.questionOptionsData.removeAll()
+        cell.questionOptionsData.append(contentsOf: tableData[indexPath.row].questionOptions)
         
-        
+       
         
         return cell
     }

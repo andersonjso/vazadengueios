@@ -16,7 +16,8 @@ class Field: NSObject{
     var helpText: String?
     var required: Bool?
     var type: Type?
-    var options: [Option]?
+
+    var options = [Option]()
     
     init(fieldDictionary: [String: Any]){
         self.id = fieldDictionary["id"] as? Int
@@ -31,7 +32,7 @@ class Field: NSObject{
             for option in allOptions!{
                 let newOption = Option(optionDictionary: option)
             
-                self.options?.append(newOption)
+                self.options.append(newOption)
             }
         }
     }

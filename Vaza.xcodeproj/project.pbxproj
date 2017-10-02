@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022895491F82804B001CFB15 /* QuestionsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022895481F82804B001CFB15 /* QuestionsTVCell.swift */; };
 		02299A1E1F6E2122009F17CE /* vazaicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02299A1D1F6E2122009F17CE /* vazaicon.png */; };
 		02299A201F6F2543009F17CE /* NewNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02299A1F1F6F2543009F17CE /* NewNotificationVC.swift */; };
 		02299A221F6F2E86009F17CE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02299A211F6F2E86009F17CE /* Notification.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		022895481F82804B001CFB15 /* QuestionsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionsTVCell.swift; path = ../QuestionsTVCell.swift; sourceTree = "<group>"; };
 		02299A1D1F6E2122009F17CE /* vazaicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vazaicon.png; path = ../../Downloads/vazaicon.png; sourceTree = "<group>"; };
 		02299A1F1F6F2543009F17CE /* NewNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotificationVC.swift; sourceTree = "<group>"; };
 		02299A211F6F2E86009F17CE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				028F95071F159B0E0057B753 /* Contents */,
 				0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */,
 				0261FEC31F0C7E6700F79B46 /* Main.storyboard */,
+				022895481F82804B001CFB15 /* QuestionsTVCell.swift */,
 				0261FEC61F0C7E6700F79B46 /* Assets.xcassets */,
 				0261FEC81F0C7E6700F79B46 /* LaunchScreen.storyboard */,
 				0261FECB1F0C7E6700F79B46 /* Info.plist */,
@@ -408,6 +411,7 @@
 				02CD66AE1F0C8F9D009065C2 /* RestApiManager.swift in Sources */,
 				02CD66B01F0DDD94009065C2 /* Content.swift in Sources */,
 				028F950A1F159B6A0057B753 /* ContentInstagram.swift in Sources */,
+				022895491F82804B001CFB15 /* QuestionsTVCell.swift in Sources */,
 				02CD66BB1F11721C009065C2 /* ContentNotification.swift in Sources */,
 				02299A241F6F2F29009F17CE /* Field.swift in Sources */,
 			);
