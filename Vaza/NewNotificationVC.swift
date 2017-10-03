@@ -8,7 +8,8 @@
 
 import UIKit
 
-class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource  {
+class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource,
+    UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     struct QuestionData{
         var questionName:String
@@ -18,7 +19,9 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var notificationTypes: UIPickerView!
     @IBOutlet weak var tableQuestions: UITableView!
     @IBOutlet weak var question: UILabel!
+    var imagePicker: UIImagePickerController!
     
+    @IBOutlet weak var imageNotification: UIImageView!
     var tableData: [QuestionData] = []
 
     
@@ -35,6 +38,17 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         tableQuestions.dataSource = self
     }
     
+    @IBAction func takePicture(_ sender: Any) {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        imageNotification.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return notificationTypesData[row].name

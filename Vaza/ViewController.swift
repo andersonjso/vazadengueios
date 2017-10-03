@@ -21,19 +21,23 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var showNotificationsButton: UIBarButtonItem!
     @IBOutlet weak var notificationButton: UIBarButtonItem!
     @IBOutlet weak var instagramButton: UIBarButtonItem!
+    private var heatmapLayer: GMUHeatmapTileLayer!
     
     var myNotitifications = [Notification]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let camera = GMSCameraPosition.camera(withLatitude: 40.727093, longitude: -73.97864, zoom: 1.0)
+        let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
         mapView.camera = camera
         mapView.settings.myLocationButton = true
         mapView.delegate = self
         
         mapView.isMyLocationEnabled = true
-
+        
+        heatmapLayer = GMUHeatmapTileLayer()
+      
+    
         
     }
     
@@ -337,6 +341,72 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
         
     }
+    @IBAction func plotHeatMap(_ sender: Any) {
+        
+        
+        self.mapView.clear()
+        self.resetButtonColors()
+    //    self.showNotificationsButton.tintColor = UIColor.init(red: 3.0/255.0, green: 85.0/255.0, blue: 1.0/255.0, alpha: 1.0)
+        
+        var myNotifications = restApiManager.retrieveNotificationsFromFile()
+        var list = [GMUWeightedLatLng]()
+        
+        for notification in myNotifications{
+            let lat = notification.location?.lat
+            let lng = notification.location?.lng
+            
+            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat as! CLLocationDegrees, lng as! CLLocationDegrees), intensity: 1.0)
+            
+            list.append(coords)
+
+            heatmapLayer.weightedData = list
+            heatmapLayer.map = self.mapView
+        }
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//
+//        var list = [GMUWeightedLatLng]()
+//        do {
+//            // Get the data: latitude/longitude positions of police stations.
+//            if let path = Bundle.main.url(forResource: "police_stations", withExtension: "json") {
+//                let data = try Data(contentsOf: path)
+//                let json = try JSONSerialization.jsonObject(with: data, options: [])
+//                if let object = json as? [[String: Any]] {
+//                    for item in object {
+//                        let lat = item["lat"]
+//                        let lng = item["lng"]
+//                        let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat as! CLLocationDegrees, lng as! CLLocationDegrees), intensity: 1.0)
+//                        list.append(coords)
+//                    }
+//                } else {
+//                    print("Could not read the JSON.")
+//                }
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//        // Add the latlngs to the heatmap layer.
+//        heatmapLayer.weightedData = list
+//        heatmapLayer.map = self.mapView
+
+    }
+    
+ 
     
 
 }

@@ -26,6 +26,7 @@
 		028F95141F15A3FC0057B753 /* LocationInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95131F15A3FC0057B753 /* LocationInstagram.swift */; };
 		028F95161F15A8AE0057B753 /* instagram.json in Resources */ = {isa = PBXBuildFile; fileRef = 028F95151F15A8AE0057B753 /* instagram.json */; };
 		028F95181F15ACD60057B753 /* DetailInstagramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028F95171F15ACD60057B753 /* DetailInstagramVC.swift */; };
+		02B4DD7E1F842A0600F4C784 /* police_stations.json in Resources */ = {isa = PBXBuildFile; fileRef = 02B4DD7D1F842A0600F4C784 /* police_stations.json */; };
 		02CD66AE1F0C8F9D009065C2 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */; };
 		02CD66B01F0DDD94009065C2 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66AF1F0DDD94009065C2 /* Content.swift */; };
 		02CD66B31F0DDE5C009065C2 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */; };
@@ -73,6 +74,8 @@
 		028F95131F15A3FC0057B753 /* LocationInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInstagram.swift; sourceTree = "<group>"; };
 		028F95151F15A8AE0057B753 /* instagram.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = instagram.json; path = ../../Downloads/instagram.json; sourceTree = "<group>"; };
 		028F95171F15ACD60057B753 /* DetailInstagramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInstagramVC.swift; sourceTree = "<group>"; };
+		02B4DD7C1F8423F100F4C784 /* gmapsutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gmapsutil.h; sourceTree = "<group>"; };
+		02B4DD7D1F842A0600F4C784 /* police_stations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = police_stations.json; path = ../../Downloads/police_stations.json; sourceTree = "<group>"; };
 		02CD66AD1F0C8F9D009065C2 /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		02CD66AF1F0DDD94009065C2 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		02CD66B21F0DDE5C009065C2 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		0261FEB31F0C7E6700F79B46 = {
 			isa = PBXGroup;
 			children = (
+				02B4DD7C1F8423F100F4C784 /* gmapsutil.h */,
 				02CD66CC1F148463009065C2 /* Resources */,
 				02CD66B81F1168DD009065C2 /* FileApiManager.swift */,
 				0261FED11F0C7E8500F79B46 /* Podfile */,
@@ -218,6 +222,7 @@
 		02CD66CC1F148463009065C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				02B4DD7D1F842A0600F4C784 /* police_stations.json */,
 				02299A1D1F6E2122009F17CE /* vazaicon.png */,
 				02CD66EF1F151CF6009065C2 /* twitter-logo2.png */,
 				02CD66ED1F15178A009065C2 /* twitter-icon.png */,
@@ -317,6 +322,7 @@
 			files = (
 				02CD66E91F14FE3C009065C2 /* green-dot.png in Resources */,
 				02CD66CE1F148475009065C2 /* tweet.json in Resources */,
+				02B4DD7E1F842A0600F4C784 /* police_stations.json in Resources */,
 				0261FECA1F0C7E6700F79B46 /* LaunchScreen.storyboard in Resources */,
 				02CD66D01F148B44009065C2 /* notifications.json in Resources */,
 				02CD66EC1F14FE3C009065C2 /* yellow-dot.png in Resources */,
@@ -544,6 +550,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = opus.Vaza;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/andersonjso/Documents/Vaza/gmapsutil.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -558,6 +565,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = opus.Vaza;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/andersonjso/Documents/Vaza/gmapsutil.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

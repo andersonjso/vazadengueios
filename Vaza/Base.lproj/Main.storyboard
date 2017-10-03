@@ -127,7 +127,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sjj-JT-c8T">
-                                <rect key="frame" x="15" y="158" width="343" height="143"/>
+                                <rect key="frame" x="15" y="158" width="181" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -218,10 +218,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XdD-LJ-ORC">
+                                <rect key="frame" x="216" y="158" width="143" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcC-oD-amR" userLabel="takePicture">
+                                <rect key="frame" x="264" y="284" width="46" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="takePicture:" destination="Qzt-bf-3yn" eventType="touchUpInside" id="eAK-Do-gw5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="imageNotification" destination="XdD-LJ-ORC" id="Q4L-qi-hJj"/>
                         <outlet property="notificationTypes" destination="D4C-kW-yDm" id="MDD-cX-qnm"/>
                         <outlet property="tableQuestions" destination="GDm-jg-WtU" id="Mg8-oM-ghx"/>
                     </connections>
@@ -281,6 +294,9 @@
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Dra-Is-BEW"/>
                                     <barButtonItem image="heatmap" id="mIo-Mt-Ei3">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="plotHeatMap:" destination="BYZ-38-t0r" id="z4n-of-qZA"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                                 <color key="barTintColor" red="0.0098452096900000004" green="0.67634795979999995" blue="0.1958001681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
