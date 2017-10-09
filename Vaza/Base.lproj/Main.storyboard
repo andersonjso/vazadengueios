@@ -142,6 +142,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.1071003601" green="0.67251318689999995" blue="0.26102417709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="send:" destination="Qzt-bf-3yn" eventType="touchUpInside" id="2b5-Xz-r6T"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Título" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBY-bk-WFW">
                                 <rect key="frame" x="16" y="67" width="44" height="21"/>
@@ -234,9 +237,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionNotification" destination="sjj-JT-c8T" id="yab-em-ppb"/>
                         <outlet property="imageNotification" destination="XdD-LJ-ORC" id="Q4L-qi-hJj"/>
                         <outlet property="notificationTypes" destination="D4C-kW-yDm" id="MDD-cX-qnm"/>
                         <outlet property="tableQuestions" destination="GDm-jg-WtU" id="Mg8-oM-ghx"/>
+                        <outlet property="title" destination="x0T-Vy-14Y" id="UzI-Aw-BZM"/>
+                        <outlet property="titleNotification" destination="x0T-Vy-14Y" id="AvI-Jf-WLu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoy-3q-IbT" userLabel="First Responder" sceneMemberID="firstResponder"/>

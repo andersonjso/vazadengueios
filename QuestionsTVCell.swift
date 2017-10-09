@@ -14,7 +14,8 @@ class QuestionsTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var questionOptions: UIPickerView!
     
     var questionOptionsData = [String]()
-    
+    var answer: String?
+    var field: Field?
     
 //    init(questionsOptionsArray: [String]){
 //        self.questionOptionsData.append(questionsOptionsArray)
@@ -24,19 +25,20 @@ class QuestionsTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSo
       
         super.awakeFromNib()
         
-        print ("eita")
+     //   print ("eita")
         // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
+        questionOptions.reloadAllComponents()
         super.setSelected(selected, animated: animated)
         
-        print ("eitaaaaaaa")
+     //   print ("eitaaaaaaa")
         
         questionOptions.delegate = self
         questionOptions.dataSource = self
         
-        questionOptions.reloadAllComponents()
+    //    questionOptions.reloadAllComponents()
 
         // Configure the view for the selected state
     }
@@ -51,7 +53,7 @@ class QuestionsTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      //  print (questionOptionsData[row])
+        answer = questionOptionsData[row]
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

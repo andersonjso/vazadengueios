@@ -19,12 +19,29 @@ class Field: NSObject{
 
     var options = [Option]()
     
+    var jsonRepresentation :[String: Any] {
+        let dict = [
+            "id": id,
+            "name": name,
+            "helpText": helpText,
+            "required": required,
+            "type": type?.jsonRepresentation
+        ] as [String : Any]
+        
+//        let data = try! JSONSerialization.data(withJSONObject: dict, options: [])
+//        return String(data: data, encoding:.utf8)!
+        
+        return dict
+    }
+    
     init(fieldDictionary: [String: Any]){
         self.id = fieldDictionary["id"] as? Int
         self.name = fieldDictionary["name"] as? String
         self.helpText = fieldDictionary["helpText"] as? String
         self.required = fieldDictionary["required"] as? Bool
         self.type = Type(typeDictionary: fieldDictionary["type"] as! [String: Any])
+        
+        
         
         if fieldDictionary["options"] != nil{
             let allOptions = fieldDictionary["options"] as? [[String: Any]]
@@ -36,6 +53,9 @@ class Field: NSObject{
             }
         }
     }
+    
+    
+
 
     
 }

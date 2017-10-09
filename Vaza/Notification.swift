@@ -10,12 +10,12 @@ import Foundation
 
 class Notification: NSObject{
     
-    var id: Int?
+    var id: CLong?
     var name: String?
     var fields = [Field]()
     
     init(notificationDictionary: [String: Any]){
-        self.id = notificationDictionary["id"] as? Int
+        self.id = notificationDictionary["id"] as? CLong
         self.name = notificationDictionary["name"] as? String
         
         let allFields = notificationDictionary["fields"] as? [[String: Any]]

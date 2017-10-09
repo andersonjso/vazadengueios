@@ -12,6 +12,7 @@ import GoogleMaps
 class RestApiManager {
     
     let url = URL(string: "http://vazadengue.inf.puc-rio.br/api/tweet?sort=createdAt,desc&size=100")
+    let urlInstagram = URL(string: "http://vazadengue.inf.puc-rio.br/api/instagram?size=100&sort=createdTime,desc&filter=location.latitude!=null")
     let urlNoti = URL(string: "http://vazadengue.inf.puc-rio.br/api/poi/?sort=date&size=500")
     let urlNotificationTypes = URL(string: "http://vazadengue.inf.puc-rio.br/api/poi-type")
     
@@ -45,6 +46,35 @@ class RestApiManager {
             
             completionHandler(contents)
         }.resume()
+    }
+    
+    func retrieveContentInstagram(completionHandler:@escaping ([ContentInstagram]) -> ()){
+        var contents = [ContentInstagram]()
+        
+        session.dataTask(with: urlInstagram!) { (data, response, error) in
+            if let data = data{
+                do{
+                    if let jsonDictionary = try JSONSerialization
+                        .jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                        as? [String: AnyObject]{
+                        
+                        let contentDictionaries = jsonDictionary["content"] as? [[String: Any]]
+                        
+                        for contentDictionary in contentDictionaries!{
+                            let newContent = ContentInstagram(contentInstagramDictionary: contentDictionary)
+                            
+                            contents.append(newContent)
+                            
+                        }
+                    }
+                }catch{
+                    print(error)
+                    print (response ?? "nada")
+                }
+            }
+            
+            completionHandler(contents)
+            }.resume()
     }
     
     func retrieveContentFromFile() -> [Content]{

@@ -18,4 +18,22 @@ class GeoLocation: NSObject {
         self.lng = geoLocationDictionary["lng"] as? Double
 
     }
+    
+    init (lat: Double, lng: Double){
+        self.lat = lat
+        self.lng = lng
+    }
+    
+    var jsonRepresentation : [String: Any] {
+        let dict = [
+            "lat": lat,
+            "lng": lng,
+        ] as [String : Any]
+        
+      //  let data = try! JSONSerialization.data(withJSONObject: dict, options: [])
+      //  return String(data: data, encoding:.utf8)!
+        
+        return dict
+    }
+
 }

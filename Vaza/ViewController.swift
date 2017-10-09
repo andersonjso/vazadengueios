@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class ViewController: UIViewController, GMSMapViewDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
     var restApiManager = RestApiManager()
@@ -22,8 +22,9 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var notificationButton: UIBarButtonItem!
     @IBOutlet weak var instagramButton: UIBarButtonItem!
     private var heatmapLayer: GMUHeatmapTileLayer!
-    
+    let locationManager = CLLocationManager()
     var myNotitifications = [Notification]()
+  //  var spinnerView = UIView?.self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,26 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         mapView.isMyLocationEnabled = true
         
         heatmapLayer = GMUHeatmapTileLayer()
+        
+        
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        locationManager
       
     
         
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     func resetButtonColors(){
@@ -94,6 +112,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             }
         } else if segue.identifier == "notificationDetail" {
             let detailsNotification = segue.destination as! DetailNotificationVC
+        
             
             if let tappedContent = tappedMarker.userData as? ContentNotification{
                 if tappedContent.user != nil{
@@ -179,70 +198,56 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
     @IBAction func showTwitterNotifications(_ sender: Any) {
         self.resetButtonColors()
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: 40.727093, longitude: -73.97864)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapView
-//        
-//        let marker2 = GMSMarker()
-//        marker2.position = CLLocationCoordinate2D(latitude:  25.767368, longitude: -80.18930)
-//        marker2.title = "Maceio"
-//        marker2.snippet = "Australia"
-//        marker2.map = mapView
-//        
-//        let marker3 = GMSMarker()
-//        marker3.position = CLLocationCoordinate2D(latitude:  34.088808, longitude: -118.40612)
-//        marker3.title = "Topers"
-//        marker3.snippet = "Australia"
-//        marker3.map = mapView
-        
-//        
-//        restApiManager.retrieveContent{ (contents) in
-//            var myContents = [Content]()
-//            myContents = contents
-//            
-//            print("OI1")
-//            DispatchQueue.main.async {
-//                print("Main")
-//                for content in myContents{
-//                    var newMarker = GMSMarker()
-//                    newMarker = content.convertToMarker()
-//                    print("Key: " + (content.classification?.key)!)
-//                    if let key = content.classification?.key{
-//                        print ("entrei no " + key)
-//                        if key != "NOISE"{
-//                            newMarker.map = self.mapView
-//                            print("printa")
-//                        }
-//                        else{
-//                            newMarker.map = nil
-//                            print("nao foi")
-//                        }
-//
-//                    }
-//                   
-//                    
-//                }
-//                print ("Done")
-//            }
-//        }
         self.mapView.clear()
-        var myContents = restApiManager.retrieveContentFromFile()
         
-                        for content in myContents{
-                            var newMarker = GMSMarker()
-                            newMarker = content.convertToMarker()
-                            if let key = content.classification?.key{
-                                if key != "NOISE"{
-                                    newMarker.map = self.mapView
-                                }
-                                else{
-                                    newMarker.map = nil
-                                }
-        
-                            }
+        let spinnerView = self.displaySpinner(onView: mapView)
+
+        restApiManager.retrieveContent{ (contents) in
+            var myContents = [Content]()
+            myContents = contents
+            
+          //  print("OI1")
+            DispatchQueue.main.async {
+          //      print("Main")
+                for content in myContents{
+                    var newMarker = GMSMarker()
+                    newMarker = content.convertToMarker()
+                //    print("Key: " + (content.classification?.key)!)
+                    if let key = content.classification?.key{
+                 //       print ("entrei no " + key)
+                        if key != "NOISE"{
+                            newMarker.map = self.mapView
+                         //   print("printa")
+                        }
+                        else{
+                            newMarker.map = nil
+                         //   print("nao foi")
+                        }
+
+                    }
+                   
+                    
+                }
+         //       print ("Done")
+                self.removeSpinner(spinner: spinnerView)
+            }
         }
+
+//        var myContents = restApiManager.retrieveContentFromFile()
+//        
+//                        for content in myContents{
+//                            var newMarker = GMSMarker()
+//                            newMarker = content.convertToMarker()
+//                            if let key = content.classification?.key{
+//                                if key != "NOISE"{
+//                                    newMarker.map = self.mapView
+//                                }
+//                                else{
+//                                    newMarker.map = nil
+//                                }
+//        
+//                            }
+//        }
         
         self.twitterButton.tintColor = UIColor.init(red: 3.0/255.0, green: 85.0/255.0, blue: 1.0/255.0, alpha: 1.0)
     }
@@ -252,63 +257,45 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         self.mapView.clear()
         self.resetButtonColors()
         self.showNotificationsButton.tintColor = UIColor.init(red: 3.0/255.0, green: 85.0/255.0, blue: 1.0/255.0, alpha: 1.0)
-//        var myNotifications = [ContentNotification]()
-//        restApiManager.retrieveNotifications{(notifications) in
-//            myNotifications = notifications
+        
+       
+        
+
+        
 //        
+//        var myNotifications = restApiManager.retrieveNotificationsFromFile()
+//        
+//        for notification in myNotifications{
+//                                var newMarker = GMSMarker()
+//                                newMarker = notification.convertToMarker()
+//                                newMarker.map = self.mapView
 //            
-//            DispatchQueue.main.async {
-//                for notification in myNotifications{
-//                    var newMarker = GMSMarker()
-//                    newMarker = notification.convertToMarker()
-//                    newMarker.map = self.mapView
-//
-//                }
-//            }
-//            
-//        }
         
+//                            }
         
-        var myNotifications = restApiManager.retrieveNotificationsFromFile()
+        let spinnerView = self.displaySpinner(onView: mapView)
         
-        for notification in myNotifications{
-                                var newMarker = GMSMarker()
-                                newMarker = notification.convertToMarker()
-                                newMarker.map = self.mapView
+        restApiManager.retrieveNotifications{ (contents) in
+            var myContents = [ContentNotification]()
+            myContents = contents
             
-                            }
-//
-        
-//        var myContents = [Content]()
-//        restApiManager.retrieveContent{ (contents) in
-//            myContents = contents
-//
-//            print("OI1")
-//            DispatchQueue.main.async {
-//                print("Main")
-//                for content in myContents{
-//                    var newMarker = GMSMarker()
-//                    newMarker = content.convertToMarker()
-//                    print("Key: " + (content.classification?.key)!)
-//                    if let key = content.classification?.key{
-//                        print ("entrei no " + key)
-//                        if key != "NOISE"{
-//                            newMarker.map = self.mapView
-//                            print("printa")
-//                        }
-//                        else{
-//                            newMarker.map = nil
-//                            print("nao foi")
-//                        }
-//                        
-//                    }
-//                    
-//                    
-//                }
-//                print ("Done")
-//            }
-//        }
-        
+            //  print("OI1")
+            DispatchQueue.main.async {
+                //      print("Main")
+                for content in myContents{
+                    var newMarker = GMSMarker()
+                    newMarker = content.convertToMarker()
+                    newMarker.map = self.mapView
+                    
+                }
+                
+                
+            }
+            //       print ("Done")
+            self.removeSpinner(spinner: spinnerView)
+        }
+
+
 
     }
 
@@ -318,16 +305,37 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         self.instagramButton.tintColor = UIColor.init(red: 3.0/255.0, green: 85.0/255.0, blue: 1.0/255.0, alpha: 1.0)
         self.mapView.clear()
         
-        var myNotifications = restApiManager.retrieveInstagramNotificationsFromFile()
+//        var myNotifications = restApiManager.retrieveInstagramNotificationsFromFile()
+//        
+//        for notification in myNotifications{
+//            var newMarker = GMSMarker()
+//            newMarker = notification.convertToMarker()
+//            newMarker.map = self.mapView
+//            
+//        }
         
-        for notification in myNotifications{
-            var newMarker = GMSMarker()
-            newMarker = notification.convertToMarker()
-            newMarker.map = self.mapView
+        let spinnerView = self.displaySpinner(onView: mapView)
+        
+        restApiManager.retrieveContentInstagram{ (contents) in
+            var myContents = [ContentInstagram]()
+            myContents = contents
             
+            //  print("OI1")
+            DispatchQueue.main.async {
+                //      print("Main")
+                for content in myContents{
+                                var newMarker = GMSMarker()
+                                newMarker = content.convertToMarker()
+                                newMarker.map = self.mapView
+                    
+                    }
+                    
+                    
+                }
+                //       print ("Done")
+                self.removeSpinner(spinner: spinnerView)
+            }
         }
-
-     }
     
     @IBAction func sendNotification(_ sender: Any) {
         
@@ -348,20 +356,50 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         self.resetButtonColors()
     //    self.showNotificationsButton.tintColor = UIColor.init(red: 3.0/255.0, green: 85.0/255.0, blue: 1.0/255.0, alpha: 1.0)
         
-        var myNotifications = restApiManager.retrieveNotificationsFromFile()
-        var list = [GMUWeightedLatLng]()
+//        var myNotifications = restApiManager.retrieveNotificationsFromFile()
+//        var list = [GMUWeightedLatLng]()
+//        
+//        for notification in myNotifications{
+//            let lat = notification.location?.lat
+//            let lng = notification.location?.lng
+//            
+//            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat as! CLLocationDegrees, lng as! CLLocationDegrees), intensity: 1.0)
+//            
+//            list.append(coords)
+//
+//            heatmapLayer.weightedData = list
+//            heatmapLayer.map = self.mapView
+//        }
         
-        for notification in myNotifications{
-            let lat = notification.location?.lat
-            let lng = notification.location?.lng
+        let spinnerView = self.displaySpinner(onView: mapView)
+        
+        restApiManager.retrieveNotifications{ (contents) in
+            var myContents = [ContentNotification]()
+            myContents = contents
+            var list = [GMUWeightedLatLng]()
             
-            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat as! CLLocationDegrees, lng as! CLLocationDegrees), intensity: 1.0)
-            
-            list.append(coords)
-
-            heatmapLayer.weightedData = list
-            heatmapLayer.map = self.mapView
+            //  print("OI1")
+            DispatchQueue.main.async {
+                //      print("Main")
+                for content in myContents{
+                                let lat = content.location?.lat
+                                let lng = content.location?.lng
+                    
+                                let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat as! CLLocationDegrees, lng as! CLLocationDegrees), intensity: 1.0)
+                    
+                                list.append(coords)
+                    
+                                self.heatmapLayer.weightedData = list
+                                self.heatmapLayer.map = self.mapView
+                    
+                }
+                
+                
+            }
+            //       print ("Done")
+            self.removeSpinner(spinner: spinnerView)
         }
+
 
         
 
@@ -404,6 +442,27 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 //        heatmapLayer.weightedData = list
 //        heatmapLayer.map = self.mapView
 
+    }
+    
+    func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
+    }
+    
+    func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
     }
     
  
