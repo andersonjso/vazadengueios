@@ -51,6 +51,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         titleNotification.delegate = self
         
         self.tableQuestions.reloadData()
+        self.imageNotification.image = UIImage(named: "vazaicon")
         //     selectedNotification = notificationTypesData[0]
         //self.titleNotification.becomeFirstResponder()
         
@@ -174,6 +175,8 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     @IBAction func send(_ sender: Any) {
        
+        titleNotification.text = "Testando"
+        descriptionNotification.text = "Descript Text"
         if verifyTitle(){
             
             poi.title = titleNotification.text
@@ -208,10 +211,11 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let opa = String(data: jsonData, encoding:.utf8)!
             
             print (opa)
-            let url = URL(string: "http://httpbin.org/post")!
-            //let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
+            //let url = URL(string: "http://httpbin.org/post")!
+            let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             
             request.httpBody = jsonData
             
