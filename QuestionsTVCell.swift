@@ -25,7 +25,7 @@ class QuestionsTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSo
       
         super.awakeFromNib()
         
-        print ("eita")
+        //     print ("eita")
       //  questionOptions.reloadAllComponents()
         // Initialization code
     }

@@ -165,6 +165,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                         //
                         //                            }
                         newNotification.notificationTypesData.append(notification)
+                        newNotification.selectedNotification = newNotification.notificationTypesData[0]
                     
                         
                         
@@ -185,11 +186,29 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                             
                             newNotification.tableData.append(question)
                     }
+                        
+                        
+                        
+                        let cell = newNotification.tableQuestions.dequeueReusableCell(withIdentifier: "questionsCells") as! QuestionsTVCell
+                        
+                        //  dequeueReusableCell(withIdentifier: "questionsCells", for: 0) as! QuestionsTVCell
+                        cell.questionOptions.reloadAllComponents()
+                        
+                        cell.questionName.text = newNotification.tableData[0].field.name
+                        cell.field = newNotification.tableData[0].field
+                        cell.questionOptionsData.removeAll()
+                        cell.questionOptionsData.append(contentsOf: newNotification.tableData[0].questionOptions)
+                        
+                        cell.answer = cell.questionOptionsData[0]
+                        
+                        
+                        newNotification.cellsList.append(cell)
 
                         
                         
                         
                     }
+                    
                     
                     newNotification.notificationTypes.reloadAllComponents()
                     newNotification.tableQuestions.reloadData()

@@ -51,7 +51,10 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         titleNotification.delegate = self
         
         self.tableQuestions.reloadData()
+        //     selectedNotification = notificationTypesData[0]
         //self.titleNotification.becomeFirstResponder()
+        
+
         
         poi = PointOfInterest()
     }
@@ -140,7 +143,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        print("entrei table view")
+        print("entrei table view: " + String(cellsList.count))
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionsCells", for: indexPath) as! QuestionsTVCell
         cell.questionOptions.reloadAllComponents()
@@ -149,6 +152,8 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         cell.field = tableData[indexPath.row].field
         cell.questionOptionsData.removeAll()
         cell.questionOptionsData.append(contentsOf: tableData[indexPath.row].questionOptions)
+        
+        cell.answer = cell.questionOptionsData[0]
         
        
         cellsList.append(cell)
