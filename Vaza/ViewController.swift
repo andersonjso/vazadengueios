@@ -165,12 +165,34 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                         //
                         //                            }
                         newNotification.notificationTypesData.append(notification)
+                    
+                        
+                        
+                        
+                        for field in notification.fields {
+                            var options = [String]()
+                            if (field.type?.name == "Number"){
+                                for age in 6...110{
+                                    options.append(String(age))
+                                }
+                            }else{
+                                for option in field.options{
+                                    options.append(option.label!)
+                                }
+                            }
+                            
+                            let question = NewNotificationVC.QuestionData(field: field, questionOptions: options)
+                            
+                            newNotification.tableData.append(question)
+                    }
+
                         
                         
                         
                     }
                     
                     newNotification.notificationTypes.reloadAllComponents()
+                    newNotification.tableQuestions.reloadData()
                     //  print (newNotification.notificationTypesData.count)
                     print ("Done")
               

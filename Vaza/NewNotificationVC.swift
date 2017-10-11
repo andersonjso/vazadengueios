@@ -48,6 +48,10 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         notificationTypes.dataSource = self
         tableQuestions.delegate = self
         tableQuestions.dataSource = self
+        titleNotification.delegate = self
+        
+        self.tableQuestions.reloadData()
+        //self.titleNotification.becomeFirstResponder()
         
         poi = PointOfInterest()
     }
@@ -74,6 +78,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (notificationTypesData.count > 0){
+            //           print ("step 1")
             tableData.removeAll()
             cellsList.removeAll()
             selectedNotification = notificationTypesData[row]
@@ -95,9 +100,13 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 let question = QuestionData(field: field, questionOptions: options)
                 
                 tableData.append(question)
+          //      print ("step 2")
+                
+           //     print ("step 3")
             }
-            
             self.tableQuestions.reloadData()
+         //   print ("step 4")
+            
             
         }
     }
@@ -131,6 +140,8 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        print("entrei table view")
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionsCells", for: indexPath) as! QuestionsTVCell
         cell.questionOptions.reloadAllComponents()
 
@@ -138,7 +149,6 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         cell.field = tableData[indexPath.row].field
         cell.questionOptionsData.removeAll()
         cell.questionOptionsData.append(contentsOf: tableData[indexPath.row].questionOptions)
-      //  print(cell.answer ?? "nada")
         
        
         cellsList.append(cell)
@@ -159,61 +169,72 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     @IBAction func send(_ sender: Any) {
        
-        
-        poi.title = titleNotification.text
-        poi.descriptionPOI = descriptionNotification.text
-        poi.published = true
-        //let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
-
-        let location = GeoLocation(lat: -37.1886, lng: 145.708)
-        poi.location = location
-        poi.type = PoiType(id: (selectedNotification?.id)!, name: (selectedNotification?.name)!)
-       // poi.date = date
-        
-        var fieldValues = [FieldValue]()
-        for cell in cellsList{
-            let fieldValue = FieldValue(value: cell.answer!, field: cell.field!)
+        if verifyTitle(){
             
-            fieldValues.append(fieldValue)
+            poi.title = titleNotification.text
+            poi.descriptionPOI = descriptionNotification.text
+            poi.published = true
+            //let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
             
-
+            let location = GeoLocation(lat: 64.244, lng: 96.064)
+            poi.location = location
+            poi.type = PoiType(id: (selectedNotification?.id)!, name: (selectedNotification?.name)!)
+            // poi.date = date
+            
+            var fieldValues = [FieldValue]()
+            for cell in cellsList{
+                let fieldValue = FieldValue(value: cell.answer!, field: cell.field!)
+                
+                fieldValues.append(fieldValue)
+                
+                
+            }
+            
+            poi.fieldValues = fieldValues
+            
+            for poiFV in poi.fieldValues{
+                print ((poiFV.field?.name)! + ": " + poiFV.value!)
+            }
+            
+            
+            let jsonData = poi.jsonRepresentation
+            
+            //let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
+            let opa = String(data: jsonData, encoding:.utf8)!
+            
+            print (opa)
+            let url = URL(string: "http://httpbin.org/post")!
+            //let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    print(responseJSON)
+                }
+            }
+            
+            task.resume()
         }
         
-        poi.fieldValues = fieldValues
         
-        for poiFV in poi.fieldValues{
-            print ((poiFV.field?.name)! + ": " + poiFV.value!)
+    }
+    
+    func verifyTitle() -> Bool{
+        if (titleNotification.text?.isEmpty)!{
+            titleNotification.backgroundColor = UIColor.yellow
+            titleNotification.placeholder = "Por favor, preencha o título"
+            
+            return false
         }
-        
-   
-        let jsonData = poi.jsonRepresentation
-        
-        //        let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
-        let opa = String(data: jsonData, encoding:.utf8)!
-        
-        print (opa)
-        
-//        let url = URL(string: "http://httpbin.org/post")!
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        
-//        request.httpBody = jsonData
-//        
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//            if let responseJSON = responseJSON as? [String: Any] {
-//                print(responseJSON)
-//            }
-//        }
-//        
-//        task.resume()
-        
-        
-        
+        return true
     }
     
     func notPrettyString(from object: Any) -> String? {
@@ -224,4 +245,22 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return nil
     }
 
+}
+
+extension NewNotificationVC : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.backgroundColor = UIColor.white
+       
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+         titleNotification.placeholder = "Título"
+    }
+
+    
 }
