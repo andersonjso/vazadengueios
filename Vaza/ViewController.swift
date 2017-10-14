@@ -128,7 +128,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                     detailsNotification.userNameString = "Anônimo"
                 }
                 
-                detailsNotification.publicationDateString = tappedContent.date!
+                detailsNotification.publicationDateSent = tappedContent.date!
                 detailsNotification.notificationTitleString = tappedContent.title!
                 detailsNotification.notificationDescriptionString = tappedContent.descriptionContent!
                 detailsNotification.classificationString = (tappedContent.type?.name!)!

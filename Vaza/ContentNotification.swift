@@ -16,7 +16,7 @@ class ContentNotification : NSObject {
     var address: String?
     var title: String?
     var descriptionContent: String?
-    var date: String?
+    var date: Date?
     var type: Type?
     var user: User?
     var pictures: [Picture]?
@@ -31,7 +31,12 @@ class ContentNotification : NSObject {
         self.address = contentNotificationDictionary["address"] as? String
         self.title = contentNotificationDictionary["title"] as? String
         self.descriptionContent = contentNotificationDictionary["description"] as? String
-        self.date = contentNotificationDictionary["date"] as? String
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        self.date = dateFormatter.date(from: contentNotificationDictionary["date"] as! String)
+
         self.type = Type(typeDictionary: contentNotificationDictionary["type"] as! [String: Any])
         
         
@@ -55,9 +60,11 @@ class ContentNotification : NSObject {
     func convertToMarker() -> GMSMarker{
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: (self.location?.lat)!, longitude: (self.location?.lng)!)
-        marker.title = self.user?.name
+        marker.title = self.title
         marker.snippet = self.descriptionContent
         marker.userData = self
+        
+        
                 //UIImage(named: "house")
      //   let color = UIColor.init(red: 255, green: 255, blue: 0, alpha: 1)
         

@@ -16,9 +16,10 @@ class DetailNotificationVC: UIViewController {
     @IBOutlet weak var notificationTitle: UILabel!
     @IBOutlet weak var notificationImage: UIImageView!
     @IBOutlet weak var notificationDescription: UITextView!
+    @IBOutlet weak var background: UIView!
     
     var userNameString = String()
-    var publicationDateString = String()
+    var publicationDateSent = Date()
     var classificationString = String()
     var notificationTitleString = String()
     var notificationDescriptionString = String()
@@ -31,7 +32,7 @@ class DetailNotificationVC: UIViewController {
         super.viewDidLoad()
         
         userName.text = userNameString
-        publicationDate.text = publicationDateString
+        publicationDate.text = dateToString(dateSent: publicationDateSent)
         classification.text = classificationString
         notificationTitle.text = notificationTitleString
         notificationDescription.text = notificationDescriptionString
@@ -49,6 +50,15 @@ class DetailNotificationVC: UIViewController {
             notificationImage.image = UIImage(named: "vazaicon")
         }
         
+        notificationDescription.layer.cornerRadius = 10
+        notificationDescription.layer.masksToBounds = true
+        
+        notificationImage.layer.cornerRadius = 5
+        notificationImage.layer.masksToBounds = true
+        
+        background.layer.cornerRadius = 5
+        background.layer.masksToBounds = true
+        
 
     }
 
@@ -59,5 +69,14 @@ class DetailNotificationVC: UIViewController {
     
     @IBAction func closePopUp(_ sender: Any) {
          dismiss(animated: true, completion: nil)
+    }
+    
+    func dateToString(dateSent: Date) -> String{
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        
+        return formatter.string(from: dateSent)
     }
 }
