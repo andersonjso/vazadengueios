@@ -12,14 +12,14 @@ import GoogleMaps
 class Content: NSObject {
     
     var id: String?
-    var createdAt: String?
+    var createdAt: Date?
     var text: String?
     var geoLocation: GeoLocation?
     var user: User?
     var classification: Classification?
     
     init(id: String,
-         createdAt: String,
+         createdAt: Date,
          text: String,
          geoLocation: GeoLocation,
          user: User,
@@ -35,7 +35,11 @@ class Content: NSObject {
     init(contentDictionary: [String: Any]){
         self.id = contentDictionary["id"] as? String
         self.text = contentDictionary["text"] as? String
-        self.createdAt = contentDictionary["createdAt"] as? String
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        self.createdAt = dateFormatter.date(from: contentDictionary["createdAt"] as! String)
         self.geoLocation = GeoLocation(geoLocationDictionary: contentDictionary["geolocation"] as! [String : Any])
         self.user = User(userDictionary: contentDictionary["user"] as! [String: Any])
         self.classification = Classification(classificationDictionary: contentDictionary["classification"] as! [String: Any])
@@ -77,6 +81,12 @@ class Content: NSObject {
         default:
             return ""
         }
+    }
+    
+    func convertToDate (dateString: String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        return dateFormatter.date(from: dateString)!
     }
     
     /*

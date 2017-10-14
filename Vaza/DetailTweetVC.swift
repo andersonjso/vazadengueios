@@ -26,7 +26,7 @@ class DetailTweetVC: UIViewController {
     
     var userFullNameString = String()
     var userNameString = String()
-    var dateString = String()
+    var dateSent = Date()
     var tweetTextString = String()
     var classificationString = String()
     var imageUserProfileLocal = UIImageView()
@@ -37,19 +37,35 @@ class DetailTweetVC: UIViewController {
         
         userFullName.text = userFullNameString
         userName.text = userNameString
-        date.text = dateString
+        date.text = dateToString(dateSent: dateSent)
         tweetText.text = tweetTextString
         classification.text = classificationString
         
         
         let url = URL(string: imageUserUrl)
-        do{
-            let profileImage = try Data(contentsOf: url!)
-            imageUserProfile.image = UIImage(data: profileImage)
-        } catch {
-            imageUserProfile.image = UIImage(named: "twitter-logo2")
+//        do{
+        
+              // DispatchQueue.main.async {
+            do{
+             //   let spinnerView = self.displaySpinner(onView: tweetDetail)
 
-        }
+                let profileImage = try Data(contentsOf: url!)
+                self.imageUserProfile.image = UIImage(data: profileImage)
+              //  spinnerView.removeFromSuperview()
+
+            }catch {
+                self.imageUserProfile.image = UIImage(named: "twitter-logo2")
+                
+            }
+            
+       // }
+        
+               //        }
+        
+//        catch {
+//            imageUserProfile.image = UIImage(named: "twitter-logo2")
+//
+//        }
         
         
     
@@ -83,4 +99,37 @@ class DetailTweetVC: UIViewController {
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
+    }
+    
+    func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+    
+    func dateToString(dateSent: Date) -> String{
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        
+        return formatter.string(from: dateSent)
+    }
+
+
+
 }

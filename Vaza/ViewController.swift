@@ -87,13 +87,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+      //  let spinnerView = self.displaySpinner(onView: mapView)
+        
         if segue.identifier == "tweetDetail"{
             let detailsTweet = segue.destination as! DetailTweetVC
 
             if let tappedContent = tappedMarker.userData as? Content {
                 detailsTweet.userFullNameString = (tappedContent.user?.name!)!
                 detailsTweet.userNameString = "@" + (tappedContent.user?.screenName!)!
-                detailsTweet.dateString = tappedContent.createdAt!
+                detailsTweet.dateSent = tappedContent.createdAt!
                 detailsTweet.tweetTextString = tappedContent.text!
                 detailsTweet.classificationString = tappedContent.retrieveClassificationType()
                 detailsTweet.imageUserUrl = (tappedContent.user?.profileImageUrl?.replacingOccurrences(of: "normal", with: "400x400"))!
@@ -140,13 +142,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             
         } else if segue.identifier == "sendNotification"{
             let newNotification = segue.destination as! NewNotificationVC
-            
-            
+
             restApiManager.retrieveNotificationOptions{ (notifications) in
                 self.myNotitifications = notifications
                 
                 DispatchQueue.main.async {
-                    
                     for notification in self.myNotitifications{
                  //       print (notification.name)
                         //                            var newMarker = GMSMarker()
@@ -166,10 +166,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                         //                            }
                         newNotification.notificationTypesData.append(notification)
                         newNotification.selectedNotification = newNotification.notificationTypesData[0]
-                    
-                        
-                        
-                        
+
                         for field in notification.fields {
                             var options = [String]()
                             if (field.type?.name == "Number"){
@@ -181,49 +178,28 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                                     options.append(option.label!)
                                 }
                             }
-                            
                             let question = NewNotificationVC.QuestionData(field: field, questionOptions: options)
                             
                             newNotification.tableData.append(question)
                     }
-                        
-                        
-                        
                         let cell = newNotification.tableQuestions.dequeueReusableCell(withIdentifier: "questionsCells") as! QuestionsTVCell
-                        
-                        //  dequeueReusableCell(withIdentifier: "questionsCells", for: 0) as! QuestionsTVCell
                         cell.questionOptions.reloadAllComponents()
-                        
                         cell.questionName.text = newNotification.tableData[0].field.name
                         cell.field = newNotification.tableData[0].field
                         cell.questionOptionsData.removeAll()
                         cell.questionOptionsData.append(contentsOf: newNotification.tableData[0].questionOptions)
-                        
                         cell.answer = cell.questionOptionsData[0]
                         
-                        
                         newNotification.cellsList.append(cell)
-
-                        
-                        
-                        
                     }
-                    
                     
                     newNotification.notificationTypes.reloadAllComponents()
                     newNotification.tableQuestions.reloadData()
-                    //  print (newNotification.notificationTypesData.count)
                     print ("Done")
-              
-                    
                 }
             }
-            
-
-           
-            
-            
         }
+        //  self.removeSpinner(spinner: spinnerView)
 
         
         
@@ -440,48 +416,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             //       print ("Done")
             self.removeSpinner(spinner: spinnerView)
         }
-
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//
-//        var list = [GMUWeightedLatLng]()
-//        do {
-//            // Get the data: latitude/longitude positions of police stations.
-//            if let path = Bundle.main.url(forResource: "police_stations", withExtension: "json") {
-//                let data = try Data(contentsOf: path)
-//                let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                if let object = json as? [[String: Any]] {
-//                    for item in object {
-//                        let lat = item["lat"]
-//                        let lng = item["lng"]
-//                        let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat as! CLLocationDegrees, lng as! CLLocationDegrees), intensity: 1.0)
-//                        list.append(coords)
-//                    }
-//                } else {
-//                    print("Could not read the JSON.")
-//                }
-//            }
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//        // Add the latlngs to the heatmap layer.
-//        heatmapLayer.weightedData = list
-//        heatmapLayer.map = self.mapView
 
     }
     
