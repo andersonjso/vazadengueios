@@ -17,7 +17,7 @@ class ContentInstagram: NSObject {
     var link: String?
     var caption: CaptionInstagram?
     var userInstagram: UserInstagram?
-    var createdTime: String?
+    var createdTime: Date?
     var images: ImagesInstagram?
     var videos: String?
     var location: LocationInstagram?
@@ -30,7 +30,11 @@ class ContentInstagram: NSObject {
         self.link = contentInstagramDictionary["link"] as? String
         self.caption = CaptionInstagram(captionInstagramDictionary: contentInstagramDictionary["caption"] as! [String: Any])
         self.userInstagram = UserInstagram(userInstagramDictionary: contentInstagramDictionary["user"] as! [String: Any])
-        self.createdTime = contentInstagramDictionary["createdTime"] as? String
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        self.createdTime = dateFormatter.date(from: contentInstagramDictionary["createdTime"] as! String)
         self.images = ImagesInstagram(imageInstagramDictionary: contentInstagramDictionary["images"] as! [String: Any])
         self.videos = nil
         self.location = LocationInstagram(locationInstagramDictionary: contentInstagramDictionary["location"] as! [String: Any])
@@ -48,13 +52,29 @@ class ContentInstagram: NSObject {
         
         return marker
     }
-
     
-    
-    
-    
-    
-       
-    
+    func convertToDate (dateString: String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        return dateFormatter.date(from: dateString)!
+    }
     
 }
+
+class CaptionInstagram: NSObject {
+    
+    var id: Int?
+    var createdTime: Date?
+    var text: String?
+    
+    init(captionInstagramDictionary: [String: Any]){
+        self.id = captionInstagramDictionary["id"] as? Int
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        self.createdTime = dateFormatter.date(from: captionInstagramDictionary["createdTime"] as! String)
+        self.text = captionInstagramDictionary["text"] as? String
+    }
+}
+

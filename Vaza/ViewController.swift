@@ -107,7 +107,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             if let tappedContent = tappedMarker.userData as? ContentInstagram {
                 detailsInstagram.userFullNameString = (tappedContent.userInstagram?.fullName!)!
                 detailsInstagram.userNameString = "@" + (tappedContent.userInstagram?.username!)!
-                detailsInstagram.dateString = (tappedContent.caption?.createdTime)!
+                detailsInstagram.dateSent = (tappedContent.caption?.createdTime)!
                 detailsInstagram.instagramTextString = tappedContent.caption!.text!
                 detailsInstagram.imagePhotoUrl = (tappedContent.images?.standardResolution?.url)!
                 detailsInstagram.linkPost = tappedContent.link!

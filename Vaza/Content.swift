@@ -83,19 +83,4 @@ class Content: NSObject {
         }
     }
     
-    func convertToDate (dateString: String) -> Date{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        return dateFormatter.date(from: dateString)!
-    }
-    
-    /*
-     var styleIconMap = {
-     1: "img/markers-google/green-dot.png",
-     2: "img/markers-google/purple-dot.png",
-     3: "img/markers-google/yellow-dot.png",
-     4: "img/markers-google/red-dot.png",
-     };
- */
-    
 }

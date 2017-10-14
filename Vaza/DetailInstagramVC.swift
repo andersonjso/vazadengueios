@@ -21,7 +21,7 @@ class DetailInstagramVC: UIViewController {
     
     var userFullNameString = String()
     var userNameString = String()
-    var dateString = String()
+    var dateSent = Date()
     var instagramTextString = String()
     var imagePhotoUrl = String()
     var linkPost = String()
@@ -31,7 +31,7 @@ class DetailInstagramVC: UIViewController {
         
         userFullName.text = userFullNameString
         userName.text = userNameString
-        date.text = dateString
+        date.text = dateToString(dateSent: dateSent)
         instagramText.text = instagramTextString
     
         
@@ -76,5 +76,14 @@ class DetailInstagramVC: UIViewController {
 
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func dateToString(dateSent: Date) -> String{
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        
+        return formatter.string(from: dateSent)
     }
 }
