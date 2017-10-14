@@ -9,13 +9,14 @@
 import UIKit
 import GoogleMaps
 
-class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
     var restApiManager = RestApiManager()
     var name = String()
     var fileHandler = FileHandler()
-    
+
+    @IBOutlet weak var searchPlace: UISearchBar!
     @IBOutlet weak var twitterButton: UIBarButtonItem!
     @IBOutlet weak var heatmapButton: UIBarButtonItem!
     @IBOutlet weak var showNotificationsButton: UIBarButtonItem!
@@ -28,13 +29,17 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+  
         
-        let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
+        searchPlace.delegate = self
+        let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 5)
         mapView.camera = camera
         mapView.settings.myLocationButton = true
         mapView.delegate = self
         
         mapView.isMyLocationEnabled = true
+        
+        
         
         heatmapLayer = GMUHeatmapTileLayer()
         
@@ -440,8 +445,90 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var query = searchBar.text
+    
+      //  query = query?.replacingOccurrences(of: " ", with: "%")
+        
+        let key = "AIzaSyAhmneckRBdCr7YRI_sbT6JxjfeOe4-BVQ"
+        
+        
+      //  let urlString ="your/url/".addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
+        let stringURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query! + "&key=" + key
+        let url = URL(string: stringURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        let session = URLSession.shared
+        
+        session.dataTask(with: request) {data, response, err in
+            let responseString = String(data: data!, encoding: .utf8)
+            do {
+                let datos = responseString?.data(using: .utf8)
+                let json = try JSONSerialization.jsonObject(with: datos!, options: []) as! [String:AnyObject]
+                let results = json["results"] as? [[String: Any]]
+                
+                let result = results![0] as! [String:AnyObject]
+                
+                let geometry = result["geometry"] as! [String:AnyObject]
+                
+                let locationJson = geometry["location"] as! [String:Double]
+                
+                let viewport = geometry["viewport"] as! [String:AnyObject]
+                
+                let northeastJson = viewport["northeast"] as! [String:Double]
+                let southJson = viewport["southwest"] as! [String:Double]
+
+                
+                let location = GeoLocation(lat: locationJson["lat"]!, lng: locationJson["lng"]!)
+                let locationNortheast = GeoLocation(lat: northeastJson["lat"]!, lng: northeastJson["lng"]!)
+                let locationSoutheast = GeoLocation(lat: southJson["lat"]!, lng: southJson["lng"]!)
+                
+                let northEast = CLLocationCoordinate2D(latitude: locationNortheast.lat!, longitude: locationNortheast.lng!)
+                let southwest = CLLocationCoordinate2D(latitude: locationSoutheast.lat!, longitude: locationSoutheast.lng!)
+                
+                
+                let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southwest)
+                
+                print ("lat: " + String(describing: location.lat) + ", long: " + String(describing: location.lng))
+                
+                DispatchQueue.main.async {
+                  //  self.mapView.animate(toZoom: 8)
+                    
+                    let update = GMSCameraUpdate.fit(bounds)
+                  //  self.mapView.moveCamera(update)
+                    self.mapView.animate(with: update)
+//                
+//                    let newLocation = CLLocationCoordinate2D(latitude: location.lat!, longitude: location.lng!)
+//                    let newLocationCam = GMSCameraUpdate.setTarget(newLocation)
+//                    self.mapView.animate(with: newLocationCam)
+                }
+            } catch {
+                print("error serializing JSON: \(error)")
+            }
+            
+        }.resume()
+    }
+    
+//    if let jsonDictionary = try JSONSerialization
+//        .jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+//        as? [String: AnyObject]{
+//        
+//        let contentDictionaries = jsonDictionary["content"] as? [[String: Any]]
+//        
+//        for contentDictionary in contentDictionaries!{
+//            let newContent = Content(contentDictionary: contentDictionary)
+//            
+//            contents.append(newContent)
+//            
+//        }
+
+    
+    
  
     
 
 }
+
+
 

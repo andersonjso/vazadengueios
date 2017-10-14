@@ -263,6 +263,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Pesquisar por local..." translatesAutoresizingMaskIntoConstraints="NO" id="cp7-vc-O7U">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.1071003601" green="0.67251318689999995" blue="0.26102417709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLx-jD-s7X">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -320,6 +326,7 @@
                         <outlet property="instagramButton" destination="kT9-ng-vMw" id="YIu-gQ-J7N"/>
                         <outlet property="mapView" destination="Qx5-wh-fe1" id="5at-FA-eCP"/>
                         <outlet property="notificationButton" destination="Vck-er-rkC" id="39I-2v-Add"/>
+                        <outlet property="searchPlace" destination="cp7-vc-O7U" id="6QX-GJ-VKc"/>
                         <outlet property="showNotificationsButton" destination="ZMI-TM-tCi" id="zCx-ju-ctG"/>
                         <outlet property="twitterButton" destination="4Fh-bB-A6J" id="c00-l1-hfo"/>
                         <segue destination="q1X-LC-MtQ" kind="show" identifier="tweetDetail" id="GH9-Aj-ZqV"/>
