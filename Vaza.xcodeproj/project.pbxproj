@@ -12,6 +12,7 @@
 		02299A201F6F2543009F17CE /* NewNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02299A1F1F6F2543009F17CE /* NewNotificationVC.swift */; };
 		02299A221F6F2E86009F17CE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02299A211F6F2E86009F17CE /* Notification.swift */; };
 		02299A241F6F2F29009F17CE /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02299A231F6F2F29009F17CE /* Field.swift */; };
+		02328D311F91B64600FC55FF /* instagram_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02328D301F91B64600FC55FF /* instagram_icon.png */; };
 		024B7F641F3BF24E004B7888 /* DetailNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */; };
 		0261FEC01F0C7E6700F79B46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */; };
 		0261FEC21F0C7E6700F79B46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261FEC11F0C7E6700F79B46 /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		02299A1F1F6F2543009F17CE /* NewNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotificationVC.swift; sourceTree = "<group>"; };
 		02299A211F6F2E86009F17CE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		02299A231F6F2F29009F17CE /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		02328D301F91B64600FC55FF /* instagram_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instagram_icon.png; path = ../../Downloads/instagram_icon.png; sourceTree = "<group>"; };
 		024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNotificationVC.swift; path = ../DetailNotificationVC.swift; sourceTree = "<group>"; };
 		0261FEBC1F0C7E6700F79B46 /* Vaza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		02CD66CC1F148463009065C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				02328D301F91B64600FC55FF /* instagram_icon.png */,
 				02299A1D1F6E2122009F17CE /* vazaicon.png */,
 				02CD66EF1F151CF6009065C2 /* twitter-logo2.png */,
 				02CD66ED1F15178A009065C2 /* twitter-icon.png */,
@@ -337,6 +340,7 @@
 				02CD66EA1F14FE3C009065C2 /* purple-dot.png in Resources */,
 				02CD66E21F149693009065C2 /* opa.png in Resources */,
 				0261FEC51F0C7E6700F79B46 /* Main.storyboard in Resources */,
+				02328D311F91B64600FC55FF /* instagram_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

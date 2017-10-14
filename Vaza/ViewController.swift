@@ -109,8 +109,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                 detailsInstagram.userNameString = "@" + (tappedContent.userInstagram?.username!)!
                 detailsInstagram.dateString = (tappedContent.caption?.createdTime)!
                 detailsInstagram.instagramTextString = tappedContent.caption!.text!
-                detailsInstagram.imageUserUrl = (tappedContent.userInstagram?.profilePictureUrl)!
                 detailsInstagram.imagePhotoUrl = (tappedContent.images?.standardResolution?.url)!
+                detailsInstagram.linkPost = tappedContent.link!
             }
         } else if segue.identifier == "notificationDetail" {
             let detailsNotification = segue.destination as! DetailNotificationVC
