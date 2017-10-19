@@ -17,6 +17,7 @@ class DetailNotificationVC: UIViewController {
     @IBOutlet weak var notificationImage: UIImageView!
     @IBOutlet weak var notificationDescription: UITextView!
     @IBOutlet weak var background: UIView!
+    @IBOutlet weak var closeButton: UIButton!
     
     var userNameString = String()
     var publicationDateSent = Date()
@@ -58,6 +59,13 @@ class DetailNotificationVC: UIViewController {
         
         background.layer.cornerRadius = 5
         background.layer.masksToBounds = true
+        
+        closeButton.layer.cornerRadius = 2
+        closeButton.layer.masksToBounds = true
+
+        
+       
+
         
 
     }
