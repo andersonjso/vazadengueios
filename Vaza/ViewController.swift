@@ -32,6 +32,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   
         
         searchPlace.delegate = self
+        //     searchPlace.endEditing(true)
         let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 5)
         mapView.camera = camera
         mapView.settings.myLocationButton = true
@@ -54,6 +55,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         }
         
         locationManager
+        
+        
       
     
         
@@ -446,6 +449,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         var query = searchBar.text
     
       //  query = query?.replacingOccurrences(of: " ", with: "%")
@@ -523,7 +527,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
 //            
 //        }
 
-    
     
  
     
