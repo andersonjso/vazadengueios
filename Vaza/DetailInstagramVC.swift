@@ -19,6 +19,7 @@ class DetailInstagramVC: UIViewController {
     @IBOutlet weak var instagramDetail: UIView!
     @IBOutlet weak var instagramPhoto: UIImageView!
     
+    @IBOutlet weak var goToInstagram: UIButton!
     var userFullNameString = String()
     var userNameString = String()
     var dateSent = Date()
@@ -33,6 +34,7 @@ class DetailInstagramVC: UIViewController {
         userName.text = userNameString
         date.text = dateToString(dateSent: dateSent)
         instagramText.text = instagramTextString
+    
     
         
         let urlPhoto = URL(string: imagePhotoUrl)
@@ -58,6 +60,9 @@ class DetailInstagramVC: UIViewController {
         
         background.layer.cornerRadius = 5
         background.layer.masksToBounds = true
+        
+        goToInstagram.layer.cornerRadius = 5
+        goToInstagram.layer.masksToBounds = true
         
         closeButton.layer.cornerRadius = 2
         closeButton.layer.masksToBounds = true
@@ -86,4 +91,9 @@ class DetailInstagramVC: UIViewController {
         
         return formatter.string(from: dateSent)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        instagramText.setContentOffset(CGPoint.zero, animated: false)    }
 }
