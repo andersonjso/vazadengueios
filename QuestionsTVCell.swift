@@ -57,6 +57,16 @@ class QuestionsTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSo
         answer = questionOptionsData[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.text = questionOptionsData[row]
+        // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
+        pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 16) // In this use your custom font
+        pickerLabel.textAlignment = NSTextAlignment.left
+        return pickerLabel
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

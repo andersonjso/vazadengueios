@@ -55,6 +55,9 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         //     selectedNotification = notificationTypesData[0]
         //self.titleNotification.becomeFirstResponder()
         
+        descriptionNotification.layer.cornerRadius = 5
+        descriptionNotification.layer.masksToBounds = true
+
 
         
         poi = PointOfInterest()
@@ -252,6 +255,16 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             return objectString
         }
         return nil
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.text = notificationTypesData[row].name
+        // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
+        pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 20) // In this use your custom font
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
     }
 
 }
