@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         GMSServices.provideAPIKey("AIzaSyAhmneckRBdCr7YRI_sbT6JxjfeOe4-BVQ")
+        GMSPlacesClient.provideAPIKey("AIzaSyAhmneckRBdCr7YRI_sbT6JxjfeOe4-BVQ")
+
         // Override point for customization after application launch.
         return true
     }

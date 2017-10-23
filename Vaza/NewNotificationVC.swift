@@ -16,6 +16,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         var questionOptions = [String]()
     }
     
+    
     struct FieldAnswer{
         var field: Field
         var answer: String
@@ -26,8 +27,9 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var question: UILabel!
     var imagePicker: UIImagePickerController!
     var poi: PointOfInterest!
+    @IBOutlet weak var takePicture: UIButton!
     
-   
+    
     
     @IBOutlet weak var descriptionNotification: UITextView!
     @IBOutlet weak var imageNotification: UIImageView!
@@ -57,6 +59,12 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         descriptionNotification.layer.cornerRadius = 5
         descriptionNotification.layer.masksToBounds = true
+        
+        takePicture.layer.cornerRadius = 2
+        takePicture.layer.masksToBounds = true
+        
+        imageNotification.layer.cornerRadius = 2
+        imageNotification.layer.masksToBounds = true
 
 
         
@@ -64,15 +72,28 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     @IBAction func takePicture(_ sender: Any) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        }
+        else{
+            print ("Sorry")
+        }
+ 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         imageNotification.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        print (imageNotification.description)
+        print (String(describing: imageNotification.image?.size.height))
+        print (String(describing: imageNotification.image?.size.width))
+     //   print (imageNotification.image?.)
+        
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

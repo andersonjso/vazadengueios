@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
-class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
     var restApiManager = RestApiManager()
@@ -23,13 +24,19 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     @IBOutlet weak var notificationButton: UIBarButtonItem!
     @IBOutlet weak var instagramButton: UIBarButtonItem!
     private var heatmapLayer: GMUHeatmapTileLayer!
-    let locationManager = CLLocationManager()
+    var locationManager: CLLocationManager!
     var myNotitifications = [Notification]()
   //  var spinnerView = UIView?.self
     
     override func viewDidLoad() {
         super.viewDidLoad()
   
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         
         searchPlace.delegate = self
         //     searchPlace.endEditing(true)
@@ -46,15 +53,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         
         
         // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
+ 
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-        
-        locationManager
         
         
       
@@ -63,8 +63,13 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        let location = locations.last
+        print ("atualizou")
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:14)
+        mapView.animate(to: camera)
+        
+        //Finally stop updating location otherwise it will come again and again in this delegate
+        self.locationManager.stopUpdatingLocation()
     }
     
     func resetButtonColors(){
@@ -275,6 +280,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
 //        }
         
         self.twitterButton.tintColor = UIColor.init(red: 3.0/255.0, green: 85.0/255.0, blue: 1.0/255.0, alpha: 1.0)
+        mapView.animate(toZoom: 1)
     }
     
     
@@ -320,7 +326,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             self.removeSpinner(spinner: spinnerView)
         }
 
-
+        mapView.animate(toZoom: 1)
 
     }
 
@@ -360,6 +366,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                 //       print ("Done")
                 self.removeSpinner(spinner: spinnerView)
             }
+        
+        mapView.animate(toZoom: 1)
         }
     
     @IBAction func sendNotification(_ sender: Any) {
@@ -424,6 +432,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             //       print ("Done")
             self.removeSpinner(spinner: spinnerView)
         }
+         mapView.animate(toZoom: 1)
 
     }
     
@@ -531,6 +540,51 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
  
     
 
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    
+    // Handle incoming location events.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location: CLLocation = locations.last!
+        print("Location: \(location)")
+        
+        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+                                              longitude: location.coordinate.longitude,
+                                              zoom: 15)
+        
+        if mapView.isHidden {
+            mapView.isHidden = false
+            mapView.camera = camera
+        } else {
+            mapView.animate(to: camera)
+        }
+        
+      //  listLikelyPlaces()
+    }
+    
+    // Handle authorization for the location manager.
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted:
+            print("Location access was restricted.")
+        case .denied:
+            print("User denied access to location.")
+            // Display the map using the default location.
+            mapView.isHidden = false
+        case .notDetermined:
+            print("Location status not determined.")
+        case .authorizedAlways: fallthrough
+        case .authorizedWhenInUse:
+            print("Location status is OK.")
+        }
+    }
+    
+    // Handle location manager errors.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+        print("Error: \(error)")
+    }
 }
 
 
