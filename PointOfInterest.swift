@@ -41,13 +41,16 @@ class PointOfInterest: NSObject{
         ] as [String : Any]
         
         var myNewDictArray: [[String: Any]] = []
-        
         for field in fieldValues{
             myNewDictArray.append(field.jsonRepresentation)
         }
         dict["fieldValues"] = myNewDictArray
         
-        
+        var picturesDictArray: [[String: Any]] = []
+        for picture in pictures{
+            picturesDictArray.append(picture.jsonRepresentation)
+        }
+        dict["pictures"] = picturesDictArray
         
         let data = try! JSONSerialization.data(withJSONObject: dict, options: [])
         return data

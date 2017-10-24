@@ -28,6 +28,8 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var imagePicker: UIImagePickerController!
     var poi: PointOfInterest!
     @IBOutlet weak var takePicture: UIButton!
+    var locationManager: CLLocationManager!
+    var currentLocation: GeoLocation!
     
     
     
@@ -51,6 +53,13 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         tableQuestions.delegate = self
         tableQuestions.dataSource = self
         titleNotification.delegate = self
+        
+        locationManager = CLLocationManager()
+      //  locationManager.desiredAccuracy = kCLLocationAccuracyBest
+      //  locationManager.requestAlwaysAuthorization()
+      //  locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         
         self.tableQuestions.reloadData()
         self.imageNotification.image = UIImage(named: "vazaicon")
@@ -208,7 +217,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             poi.published = true
             //let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
             
-            let location = GeoLocation(lat: 64.244, lng: 96.064)
+            let location = GeoLocation(lat: currentLocation.lat!, lng: currentLocation.lng!)
             poi.location = location
             poi.type = PoiType(id: (selectedNotification?.id)!, name: (selectedNotification?.name)!)
             // poi.date = date
@@ -228,6 +237,17 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 print ((poiFV.field?.name)! + ": " + poiFV.value!)
             }
             
+            var pictures = [Picture]()
+            var picture =  Picture(fileName: "Vaza Zika",
+                                   mimeType: "image/png",
+                                   width: Float((imageNotification.image?.size.width)!),
+                                   height: Float((imageNotification.image?.size.height)!))
+         //   picture.generateDate()
+            
+            pictures.append(picture)
+            
+            poi.pictures = pictures
+            
             
             let jsonData = poi.jsonRepresentation
             
@@ -235,11 +255,15 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let opa = String(data: jsonData, encoding:.utf8)!
             
             print (opa)
-            //let url = URL(string: "http://httpbin.org/post")!
-            let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
+            let url = URL(string: "http://httpbin.org/post")!
+          //  let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            
+            
+//            request.httpBody = self.createRequestBodyWith(parameters:yourParamsDictionary, filePathKey:yourKey, boundary:self.generateBoundaryString)
+            
             
             request.httpBody = jsonData
             
@@ -259,6 +283,10 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         
     }
+    
+//    func generateBoundaryString() -> String {
+//        return "Boundary-\(NSUUID().uuidString)"
+//    }
     
     func verifyTitle() -> Bool{
         if (titleNotification.text?.isEmpty)!{
@@ -287,7 +315,34 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
     }
-
+    
+//    func createRequestBodyWith(parameters:[String:NSObject], filePathKey:String, boundary:String) -> NSData{
+//        
+//        let body = NSMutableData()
+//        
+//        for (key, value) in parameters {
+//            body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+//            body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+//            body.append("\(value)\r\n".data(using: String.Encoding.utf8)!)
+//        }
+//        
+//        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+//        
+//        var mimetype = "image/jpg"
+//        
+//        let defFileName = "yourImageName.jpg"
+//        
+//        let imageData = UIImageJPEGRepresentation(yourImage, 1)
+//        
+//        body.append("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(defFileName)\"\r\n".data(using: String.Encoding.utf8)!)
+//        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+//        body.append(imageData!)
+//        body.append("\r\n".data(using: String.Encoding.utf8)!)
+//        
+//        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+//        
+//        return body
+//    }
 }
 
 extension NewNotificationVC : UITextFieldDelegate{
@@ -306,4 +361,28 @@ extension NewNotificationVC : UITextFieldDelegate{
     }
 
     
+}
+
+extension NewNotificationVC: CLLocationManagerDelegate {
+    
+    // Handle incoming location events.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location: CLLocation = locations.last!
+       // print("Location: \(location)")
+
+        
+        currentLocation = GeoLocation(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
+        
+        print (currentLocation.lat)
+        print (currentLocation.lng)
+        
+        locationManager.stopUpdatingLocation()
+        
+    }
+    
+    // Handle location manager errors.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+        print("Error: \(error)")
+    }
 }

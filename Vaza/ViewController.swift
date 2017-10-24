@@ -26,6 +26,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, UISearchBarDelegate 
     private var heatmapLayer: GMUHeatmapTileLayer!
     var locationManager: CLLocationManager!
     var myNotitifications = [Notification]()
+    var currentLocation: GeoLocation!
   //  var spinnerView = UIView?.self
     
     override func viewDidLoad() {
@@ -552,6 +553,8 @@ extension ViewController: CLLocationManagerDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
                                               zoom: 15)
+        
+        currentLocation = GeoLocation(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
         
         if mapView.isHidden {
             mapView.isHidden = false

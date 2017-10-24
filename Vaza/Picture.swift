@@ -15,8 +15,8 @@ class Picture : NSObject{
     var date: String?
     var user: User?
     var mimeType: String?
-    var width: Int?
-    var height: Int?
+    var width: Float?
+    var height: Float?
     
     init (pictureDictionary: [String: Any]){
         self.id = pictureDictionary["id"] as? Int
@@ -28,7 +28,39 @@ class Picture : NSObject{
       //  }
         
         self.mimeType = pictureDictionary["mimeType"] as? String
-        self.width = pictureDictionary["width"] as? Int
-        self.height = pictureDictionary["height"] as? Int
+        self.width = pictureDictionary["width"] as? Float
+        self.height = pictureDictionary["height"] as? Float
+    }
+    
+    init (fileName: String, mimeType: String, width: Float, height: Float){
+        self.fileName = fileName
+        self.mimeType = mimeType
+        self.width = width
+        self.height = height
+
+      //  generateDate()
+    }
+    
+    var jsonRepresentation : [String: Any] {
+        let dict = [
+            "fileName": fileName,
+            "date": generateDate(),
+            "mimeType": mimeType,
+            "width": width,
+            "height": height
+            ] as [String : Any]
+    
+        return dict
+    }
+    
+    func generateDate() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        self.date = formatter.string(from: date)
+        return formatter.string(from: date)
+        
     }
 }
