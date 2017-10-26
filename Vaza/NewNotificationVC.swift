@@ -32,6 +32,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var currentLocation: GeoLocation!
     let restApiManager =  RestApiManager()
     var uploadedImage: Picture!
+    @IBOutlet var newNotificationView: UIView!
     
     
     
@@ -214,7 +215,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         descriptionNotification.text = "Descript Text"
         if verifyTitle(){
 
- 
+            let spinnerView = self.displaySpinner(onView: self.newNotificationView)
             restApiManager.uploadImage(imageNotification: imageNotification.image!, completionHandler: { picture in
                 
                 DispatchQueue.main.async {
@@ -261,7 +262,7 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     let opa = String(data: jsonData, encoding:.utf8)!
                     
                     print (opa)
-                    //  let url = URL(string: "http://httpbin.org/post")!
+                    //let url = URL(string: "http://httpbin.org/post")!
                     let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
@@ -281,6 +282,18 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     }
                     
                     task.resume()
+
+                    self.removeSpinner(spinner: spinnerView)
+                    
+                    let alert = UIAlertController(title: "Notificação enviada", message: "Obrigado", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
 
 
                 }
@@ -331,76 +344,30 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return pickerLabel
     }
     
-    func uploadImage(){
-        let url = URL(string: "http://vazadengue.inf.puc-rio.br/api/picture/upload")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+    func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
         
-        let param = [String:String]()
-        
-        let boundary = generateBoundaryString()
-        
-        
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        let imageData = UIImageJPEGRepresentation(imageNotification.image!, 1)
-        
-        request.httpBody = createBodyWithParameters(parameters: param, filePathKey: "file", imageDataKey: imageData! as NSData, boundary: boundary) as Data
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
-            }
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
         }
         
-        task.resume()
-
+        return spinnerView
     }
     
-    func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
-        let body = NSMutableData();
-        
-        if parameters != nil {
-            for (key, value) in parameters! {
-                body.appendString(string: "--\(boundary)\r\n")
-                body.appendString(string: "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-                body.appendString(string: "\(value)\r\n")
-            }
+    func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
         }
-        
-        let filename = "user-profile.jpg"
-        let mimetype = "image/jpg"
-        
-        body.appendString(string: "--\(boundary)\r\n")
-        body.appendString(string: "Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
-        body.appendString(string: "Content-Type: \(mimetype)\r\n\r\n")
-        body.append(imageDataKey as Data)
-        body.appendString(string: "\r\n")
-        
-        
-        
-        body.appendString(string: "--\(boundary)--\r\n")
-        
-        return body
     }
-    
-    func generateBoundaryString() -> String {
-        return "Boundary-\(NSUUID().uuidString)"
-    }
+
 }
 
-extension NSMutableData {
-    
-    func appendString(string: String) {
-        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
-        append(data!)
-    }
-}
+
 
 extension NewNotificationVC : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

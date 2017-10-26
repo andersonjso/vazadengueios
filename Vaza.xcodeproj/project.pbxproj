@@ -62,7 +62,7 @@
 		02328D301F91B64600FC55FF /* instagram_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instagram_icon.png; path = ../../Downloads/instagram_icon.png; sourceTree = "<group>"; };
 		0237D4061F9937FB006D731F /* instawhiteicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instawhiteicon.png; path = ../../Downloads/instawhiteicon.png; sourceTree = "<group>"; };
 		024B7F631F3BF24E004B7888 /* DetailNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNotificationVC.swift; path = ../DetailNotificationVC.swift; sourceTree = "<group>"; };
-		0261FEBC1F0C7E6700F79B46 /* Vaza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaza.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0261FEBC1F0C7E6700F79B46 /* Vaza Zika!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vaza Zika!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0261FEBF1F0C7E6700F79B46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0261FEC11F0C7E6700F79B46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0261FEC41F0C7E6700F79B46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		0261FEBD1F0C7E6700F79B46 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0261FEBC1F0C7E6700F79B46 /* Vaza.app */,
+				0261FEBC1F0C7E6700F79B46 /* Vaza Zika!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,9 +263,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0261FEBB1F0C7E6700F79B46 /* Vaza */ = {
+		0261FEBB1F0C7E6700F79B46 /* Vaza Zika! */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0261FECE1F0C7E6700F79B46 /* Build configuration list for PBXNativeTarget "Vaza" */;
+			buildConfigurationList = 0261FECE1F0C7E6700F79B46 /* Build configuration list for PBXNativeTarget "Vaza Zika!" */;
 			buildPhases = (
 				C7BC8A519EEEA874EA20132C /* [CP] Check Pods Manifest.lock */,
 				0261FEB81F0C7E6700F79B46 /* Sources */,
@@ -278,9 +278,9 @@
 			);
 			dependencies = (
 			);
-			name = Vaza;
+			name = "Vaza Zika!";
 			productName = Vaza;
-			productReference = 0261FEBC1F0C7E6700F79B46 /* Vaza.app */;
+			productReference = 0261FEBC1F0C7E6700F79B46 /* Vaza Zika!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -313,7 +313,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0261FEBB1F0C7E6700F79B46 /* Vaza */,
+				0261FEBB1F0C7E6700F79B46 /* Vaza Zika! */,
 			);
 		};
 /* End PBXProject section */
@@ -586,7 +586,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0261FECE1F0C7E6700F79B46 /* Build configuration list for PBXNativeTarget "Vaza" */ = {
+		0261FECE1F0C7E6700F79B46 /* Build configuration list for PBXNativeTarget "Vaza Zika!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0261FECF1F0C7E6700F79B46 /* Debug */,
