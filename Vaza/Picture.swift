@@ -43,6 +43,7 @@ class Picture : NSObject{
     
     var jsonRepresentation : [String: Any] {
         let dict = [
+            "id": id,
             "fileName": fileName,
             "date": generateDate(),
             "mimeType": mimeType,

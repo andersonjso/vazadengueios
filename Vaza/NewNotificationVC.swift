@@ -30,6 +30,8 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var takePicture: UIButton!
     var locationManager: CLLocationManager!
     var currentLocation: GeoLocation!
+    let restApiManager =  RestApiManager()
+    var uploadedImage: Picture!
     
     
     
@@ -208,77 +210,90 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     @IBAction func send(_ sender: Any) {
        
-        titleNotification.text = "Testando"
+        //   titleNotification.text = "Testando"
         descriptionNotification.text = "Descript Text"
         if verifyTitle(){
-            
-            poi.title = titleNotification.text
-            poi.descriptionPOI = descriptionNotification.text
-            poi.published = true
-            //let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
-            
-            let location = GeoLocation(lat: currentLocation.lat!, lng: currentLocation.lng!)
-            poi.location = location
-            poi.type = PoiType(id: (selectedNotification?.id)!, name: (selectedNotification?.name)!)
-            // poi.date = date
-            
-            var fieldValues = [FieldValue]()
-            for cell in cellsList{
-                let fieldValue = FieldValue(value: cell.answer!, field: cell.field!)
+
+ 
+            restApiManager.uploadImage(imageNotification: imageNotification.image!, completionHandler: { picture in
                 
-                fieldValues.append(fieldValue)
+                DispatchQueue.main.async {
+                    self.uploadedImage = picture
+                    
+                    print (self.uploadedImage.fileName ?? "falhou")
+                    
+                    self.poi.title = self.titleNotification.text
+                    self.poi.descriptionPOI = self.descriptionNotification.text
+                    self.poi.published = true
+                    //let camera = GMSCameraPosition.camera(withLatitude:  -37.1886, longitude: 145.708, zoom: 0.3)
+                    
+                    let location = GeoLocation(lat: self.currentLocation.lat!, lng: self.currentLocation.lng!)
+                    self.poi.location = location
+                    self.poi.type = PoiType(id: (self.selectedNotification?.id)!, name: (self.selectedNotification?.name)!)
+                    // poi.date = date
+                    
+                    var fieldValues = [FieldValue]()
+                    for cell in self.cellsList{
+                        let fieldValue = FieldValue(value: cell.answer!, field: cell.field!)
+                        
+                        fieldValues.append(fieldValue)
+                        
+                        
+                    }
+                    
+                    self.poi.fieldValues = fieldValues
+                    
+                    for poiFV in self.poi.fieldValues{
+                        print ((poiFV.field?.name)! + ": " + poiFV.value!)
+                    }
+                    
+                    var pictures = [Picture]()
                 
-                
-            }
-            
-            poi.fieldValues = fieldValues
-            
-            for poiFV in poi.fieldValues{
-                print ((poiFV.field?.name)! + ": " + poiFV.value!)
-            }
-            
-            var pictures = [Picture]()
-            var picture =  Picture(fileName: "Vaza Zika",
-                                   mimeType: "image/png",
-                                   width: Float((imageNotification.image?.size.width)!),
-                                   height: Float((imageNotification.image?.size.height)!))
-         //   picture.generateDate()
-            
-            pictures.append(picture)
-            
-            poi.pictures = pictures
-            
-            
-            let jsonData = poi.jsonRepresentation
-            
-            //let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
-            let opa = String(data: jsonData, encoding:.utf8)!
-            
-            print (opa)
-            let url = URL(string: "http://httpbin.org/post")!
-          //  let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            
-            
-//            request.httpBody = self.createRequestBodyWith(parameters:yourParamsDictionary, filePathKey:yourKey, boundary:self.generateBoundaryString)
-            
-            
-            request.httpBody = jsonData
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "No data")
-                    return
+                    
+                    pictures.append(self.uploadedImage)
+                    
+                    self.poi.pictures = pictures
+                    
+                    
+                    let jsonData = self.poi.jsonRepresentation
+                    
+                    //let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
+                    let opa = String(data: jsonData, encoding:.utf8)!
+                    
+                    print (opa)
+                    //  let url = URL(string: "http://httpbin.org/post")!
+                    let url = URL(string: "http://dengue.les.inf.puc-rio.br/api/poi")!
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                    request.httpBody = jsonData
+                    
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard let data = data, error == nil else {
+                            print(error?.localizedDescription ?? "No data")
+                            return
+                        }
+                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                        if let responseJSON = responseJSON as? [String: Any] {
+                            print(responseJSON)
+                        }
+                    }
+                    
+                    task.resume()
+
+
                 }
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    print(responseJSON)
-                }
-            }
+
+                
+                
+                
+            })
             
-            task.resume()
+            
+            
+        
+            
         }
         
         
@@ -316,33 +331,75 @@ class NewNotificationVC: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return pickerLabel
     }
     
-//    func createRequestBodyWith(parameters:[String:NSObject], filePathKey:String, boundary:String) -> NSData{
-//        
-//        let body = NSMutableData()
-//        
-//        for (key, value) in parameters {
-//            body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
-//            body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: String.Encoding.utf8)!)
-//            body.append("\(value)\r\n".data(using: String.Encoding.utf8)!)
-//        }
-//        
-//        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
-//        
-//        var mimetype = "image/jpg"
-//        
-//        let defFileName = "yourImageName.jpg"
-//        
-//        let imageData = UIImageJPEGRepresentation(yourImage, 1)
-//        
-//        body.append("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(defFileName)\"\r\n".data(using: String.Encoding.utf8)!)
-//        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
-//        body.append(imageData!)
-//        body.append("\r\n".data(using: String.Encoding.utf8)!)
-//        
-//        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
-//        
-//        return body
-//    }
+    func uploadImage(){
+        let url = URL(string: "http://vazadengue.inf.puc-rio.br/api/picture/upload")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let param = [String:String]()
+        
+        let boundary = generateBoundaryString()
+        
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let imageData = UIImageJPEGRepresentation(imageNotification.image!, 1)
+        
+        request.httpBody = createBodyWithParameters(parameters: param, filePathKey: "file", imageDataKey: imageData! as NSData, boundary: boundary) as Data
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+        
+        task.resume()
+
+    }
+    
+    func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
+        let body = NSMutableData();
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.appendString(string: "--\(boundary)\r\n")
+                body.appendString(string: "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.appendString(string: "\(value)\r\n")
+            }
+        }
+        
+        let filename = "user-profile.jpg"
+        let mimetype = "image/jpg"
+        
+        body.appendString(string: "--\(boundary)\r\n")
+        body.appendString(string: "Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
+        body.appendString(string: "Content-Type: \(mimetype)\r\n\r\n")
+        body.append(imageDataKey as Data)
+        body.appendString(string: "\r\n")
+        
+        
+        
+        body.appendString(string: "--\(boundary)--\r\n")
+        
+        return body
+    }
+    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(NSUUID().uuidString)"
+    }
+}
+
+extension NSMutableData {
+    
+    func appendString(string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        append(data!)
+    }
 }
 
 extension NewNotificationVC : UITextFieldDelegate{
